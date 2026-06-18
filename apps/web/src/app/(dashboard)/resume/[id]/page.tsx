@@ -395,8 +395,20 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
 
   const applySuggestion = (suggestion: any) => {
     let newData = { ...resumeData };
-    if (suggestion.type === 'summary') newData.personalInfo = { ...newData.personalInfo, summary: suggestion.value };
-    else if (suggestion.type === 'skills') newData.skills = [...new Set([...newData.skills, ...suggestion.value])];
+    if (suggestion.type === 'summary') {
+      newData.personalInfo = { ...newData.personalInfo, summary: suggestion.value };
+    } else if (suggestion.type === 'skills') {
+      newData.skills = [...new Set([...newData.skills, ...suggestion.value])];
+    } else if (suggestion.type === 'experience') {
+      const compName = (suggestion.company || '').toLowerCase().trim();
+      newData.experience = newData.experience.map((exp) => {
+        const match = exp.company.toLowerCase().includes(compName) || compName.includes(exp.company.toLowerCase());
+        if (match) {
+          return { ...exp, description: suggestion.value };
+        }
+        return exp;
+      });
+    }
     setResumeData(newData); handleSave(newData);
     setMessages((prev) => [...prev, { role: 'assistant', content: '✅ Applied! Your resume has been updated.' }]);
   };
@@ -412,7 +424,7 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          message: `${userMsg}\n\n[Resume data: ${JSON.stringify(resumeData)}. Act as expert ATS coach. Give concise improvements. If suggesting changes, end with a JSON block: \`\`\`json { "type": "summary"|"skills", "value": string|string[] } \`\`\`]`,
+          message: `${userMsg}\n\n[Resume data: ${JSON.stringify(resumeData)}. Act as expert ATS coach. Give concise improvements. If suggesting changes, end with a JSON block: \`\`\`json { "type": "summary"|"skills"|"experience", "company": "company_name_here", "value": string|string[] } \`\`\`]`,
         }),
       });
       if (!response.ok) throw new Error('Response error');
@@ -882,6 +894,8 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
                     <p className="text-[10px] text-slate-600 leading-snug">
                       {msg.suggestion.type === 'summary'
                         ? 'Rewrite professional summary with ATS keywords'
+                        : msg.suggestion.type === 'experience'
+                        ? `Update achievements for ${msg.suggestion.company || 'experience'}`
                         : `Add ${msg.suggestion.value?.length} skills to your profile`}
                     </p>
                     <button
