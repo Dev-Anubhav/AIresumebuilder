@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ExtractedField } from '@ai-document-platform/types';
+import { ExtractedField } from '@/lib/types';
 import { useUIStore } from '../../stores/uiStore';
 import { Icons } from '../ui/icons';
 

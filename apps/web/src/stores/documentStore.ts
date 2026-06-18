@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Document, Annotation, DocumentAnalysis } from '@ai-document-platform/types';
+import { Document, Annotation, DocumentAnalysis } from '@/lib/types';
 
 interface DocumentState {
   documents: Document[];

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { DocumentAnalysis } from '@ai-document-platform/types';
+import { DocumentAnalysis } from '@/lib/types';
 import { Icons } from '../ui/icons';
 
 interface SummaryPanelProps {

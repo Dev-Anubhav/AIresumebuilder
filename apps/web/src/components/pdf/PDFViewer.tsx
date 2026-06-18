@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useUIStore } from '../../stores/uiStore';
 import { useDocumentStore } from '../../stores/documentStore';
-import { Annotation } from '@ai-document-platform/types';
+import { Annotation } from '@/lib/types';
 import { cn } from '../../lib/utils';
 import { Icons } from '../ui/icons';
 import { Document, Page, pdfjs } from 'react-pdf';

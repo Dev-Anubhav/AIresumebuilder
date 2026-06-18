@@ -1,4 +1,4 @@
-import { Document, ChatMessage, DocumentAnalysis, Annotation, User } from '@ai-document-platform/types';
+import { Document, ChatMessage, DocumentAnalysis, Annotation, User } from '@/lib/types';
 
 const BASE_URL = ''; // Proxied via next.config.ts rewrites
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Annotation } from '@ai-document-platform/types';
+import { Annotation } from '@/lib/types';
 import { useUIStore } from '../../stores/uiStore';
 import { Icons } from '../ui/icons';
 

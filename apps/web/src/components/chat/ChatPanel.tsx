@@ -5,7 +5,7 @@ import { useChatStore } from '../../stores/chatStore';
 import { useUIStore } from '../../stores/uiStore';
 import { useStreamingResponse } from '../../hooks/useStreamingResponse';
 import { Icons } from '../ui/icons';
-import { MessageRole } from '@ai-document-platform/types';
+import { MessageRole } from '@/lib/types';
 
 interface ChatPanelProps {
   documentId: string;

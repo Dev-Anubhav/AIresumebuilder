@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { ChatMessage } from '@ai-document-platform/types';
+import { ChatMessage } from '@/lib/types';
 
 interface ChatState {
   messages: ChatMessage[];

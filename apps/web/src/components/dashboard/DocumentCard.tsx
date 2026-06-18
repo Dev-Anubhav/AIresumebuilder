@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Document } from '@ai-document-platform/types';
+import { Document } from '@/lib/types';
 import { Icons } from '../ui/icons';
 import { formatBytes } from '../../lib/utils';
 import Link from 'next/link';
