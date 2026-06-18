@@ -13,9 +13,9 @@ const features = [
     icon: Sparkles,
     title: 'AI Resume Coach',
     desc: 'Get real-time suggestions powered by StepFun AI to rewrite summaries, improve bullet points, and add ATS keywords.',
-    bg: '#f5f3ff',
-    border: '#ddd6fe',
-    text: '#7c5dfa',
+    bg: '#f1effb',
+    border: '#d9d2f2',
+    text: '#5c4baf',
   },
   {
     icon: FileText,
@@ -49,8 +49,8 @@ const testimonials = [
     role: 'Software Engineer at Razorpay',
     quote: 'ResuCraft AI helped me rewrite my resume in under 10 minutes. I got 3 interview calls within a week.',
     initials: 'PS',
-    bg: '#f5f3ff',
-    color: '#7c5dfa',
+    bg: '#f1effb',
+    color: '#5c4baf',
   },
   {
     name: 'Rahul Mehta',
@@ -80,7 +80,7 @@ const steps = [
 export default function LandingPage() {
   return (
     <div
-      className="min-h-screen text-slate-800 bg-[#faf8f6]"
+      className="min-h-screen text-slate-800 bg-background"
       style={{
         fontFamily: "'Inter', system-ui, sans-serif",
       }}
@@ -97,19 +97,19 @@ export default function LandingPage() {
 
       {/* ── NAV ───────────────────────────────────────────────────────────── */}
       <nav
-        className="border-b border-[#e2e8f0] bg-white/80 backdrop-blur-md sticky top-0 z-50"
+        className="border-b border-border bg-card/80 backdrop-blur-md sticky top-0 z-50"
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#7c5dfa] flex items-center justify-center shadow-lg shadow-[#7c5dfa]/20">
+            <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M4 3h7a4 4 0 0 1 0 8H4V3Z" fill="white" opacity="0.9" />
                 <path d="M4 11h5.5l4.5 6H11L7 11.2V17H4v-6Z" fill="white" />
               </svg>
             </div>
             <span className="font-extrabold text-lg tracking-tight text-slate-900">
-              ResuCraft <span className="text-[#7c5dfa]">AI</span>
+              ResuCraft <span className="text-primary">AI</span>
             </span>
           </div>
 
@@ -123,7 +123,7 @@ export default function LandingPage() {
             </Link>
             <Link
               href="/signup"
-              className="px-5 py-2.5 rounded-lg text-xs font-bold text-white bg-[#7c5dfa] hover:bg-[#6d4ae5] shadow-md shadow-[#7c5dfa]/15 transition"
+              className="px-5 py-2.5 rounded-lg text-xs font-bold text-white bg-primary hover:bg-primary/90 shadow-md shadow-primary/15 transition"
             >
               Get Started Free
             </Link>
@@ -135,13 +135,13 @@ export default function LandingPage() {
       <section className="py-20 px-6 text-center relative overflow-hidden">
         {/* Subtle warm glow background */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#ffdcd2]/20 blur-[120px] pointer-events-none rounded-full" />
-        <div className="absolute bottom-0 left-[10%] w-[250px] h-[250px] bg-[#e0e7ff]/30 blur-[80px] pointer-events-none rounded-full" />
+        <div className="absolute bottom-0 left-[10%] w-[250px] h-[250px] bg-secondary/30 blur-[80px] pointer-events-none rounded-full" />
 
         <div className="relative z-10 max-w-3xl mx-auto space-y-6">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#7c5dfa]/20 bg-[#7c5dfa]/5">
-            <Star size={12} className="text-[#7c5dfa]" fill="#7c5dfa" />
-            <span className="text-xs font-semibold text-[#7c5dfa]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/20 bg-primary/5">
+            <Star size={12} className="text-primary" fill="currentColor" />
+            <span className="text-xs font-semibold text-primary">
               AI-Powered Resume Builder — 100% Free to Start
             </span>
           </div>
@@ -149,7 +149,7 @@ export default function LandingPage() {
           {/* Headline */}
           <h1 className="text-4xl md:text-6xl font-black tracking-tight text-slate-900 leading-[1.08]">
             Build Resumes That{' '}
-            <span className="text-[#7c5dfa]">
+            <span className="text-primary">
               Actually Get Interviews
             </span>
           </h1>
@@ -164,14 +164,14 @@ export default function LandingPage() {
           <div className="flex items-center justify-center gap-3 pt-4">
             <Link
               href="/signup"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white bg-[#7c5dfa] hover:bg-[#6d4ae5] shadow-lg shadow-[#7c5dfa]/25 text-sm transition"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 text-sm transition"
             >
               Create My Resume Free
               <ArrowRight size={16} />
             </Link>
             <Link
               href="/login"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 text-sm transition"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-slate-700 bg-card hover:bg-slate-50 border border-border text-sm transition"
             >
               Sign In
             </Link>
@@ -196,7 +196,7 @@ export default function LandingPage() {
       {/* ── FEATURES ──────────────────────────────────────────────────────── */}
       <section className="py-16 px-6 max-w-6xl mx-auto space-y-12">
         <div className="text-center space-y-3">
-          <p className="text-xs font-bold text-[#7c5dfa] tracking-wider uppercase">
+          <p className="text-xs font-bold text-primary tracking-wider uppercase">
             Features
           </p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -213,7 +213,7 @@ export default function LandingPage() {
             return (
               <div
                 key={i}
-                className="p-7 rounded-2xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between"
+                className="p-7 rounded-2xl border border-border bg-card shadow-sm flex flex-col justify-between"
               >
                 <div>
                   <div
@@ -234,7 +234,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── HOW IT WORKS ──────────────────────────────────────────────────── */}
-      <section className="py-16 px-6 bg-white border-y border-slate-200">
+      <section className="py-16 px-6 bg-card border-y border-border">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-3">
             <p className="text-xs font-bold text-emerald-600 tracking-wider uppercase">
@@ -248,8 +248,8 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {steps.map((step, i) => (
               <div key={i} className="text-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-[#7c5dfa]/10 border border-[#7c5dfa]/20 flex items-center justify-center mx-auto shadow-sm">
-                  <span className="text-sm font-extrabold text-[#7c5dfa]">{step.num}</span>
+                <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto shadow-sm">
+                  <span className="text-sm font-extrabold text-primary">{step.num}</span>
                 </div>
                 <h3 className="font-bold text-sm text-slate-800">{step.title}</h3>
                 <p className="text-slate-500 text-xs leading-relaxed">{step.desc}</p>
@@ -274,7 +274,7 @@ export default function LandingPage() {
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between"
+              className="p-6 rounded-2xl border border-border bg-card shadow-sm flex flex-col justify-between"
             >
               <div>
                 <div className="flex gap-0.5 mb-4">
@@ -305,11 +305,11 @@ export default function LandingPage() {
 
       {/* ── CTA BANNER ────────────────────────────────────────────────────── */}
       <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center p-12 rounded-3xl bg-[#f5f3ff] border border-[#7c5dfa]/20 relative overflow-hidden shadow-sm">
+        <div className="max-w-4xl mx-auto text-center p-12 rounded-3xl bg-secondary border border-primary/20 relative overflow-hidden shadow-sm">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[150px] bg-[#ffdcd2]/25 blur-[50px] pointer-events-none rounded-full" />
 
           <div className="relative z-10 space-y-6">
-            <div className="w-14 h-14 rounded-2xl bg-[#7c5dfa] flex items-center justify-center mx-auto shadow-md shadow-[#7c5dfa]/20">
+            <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center mx-auto shadow-md shadow-primary/20">
               <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
                 <path d="M4 3h7a4 4 0 0 1 0 8H4V3Z" fill="white" opacity="0.9" />
                 <path d="M4 11h5.5l4.5 6H11L7 11.2V17H4v-6Z" fill="white" />
@@ -327,14 +327,14 @@ export default function LandingPage() {
             <div className="flex gap-3 justify-center flex-wrap pt-2">
               <Link
                 href="/signup"
-                className="inline-flex items-center gap-2 px-7 py-3 rounded-xl font-bold text-white bg-[#7c5dfa] hover:bg-[#6d4ae5] shadow-md shadow-[#7c5dfa]/20 text-xs transition"
+                className="inline-flex items-center gap-2 px-7 py-3 rounded-xl font-bold text-white bg-primary hover:bg-primary/90 shadow-md shadow-primary/20 text-xs transition"
               >
                 Start Building Now
                 <ArrowRight size={14} />
               </Link>
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 text-xs transition"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-slate-700 bg-card hover:bg-slate-50 border border-border text-xs transition"
               >
                 Sign In
               </Link>
@@ -344,16 +344,16 @@ export default function LandingPage() {
       </section>
 
       {/* ── FOOTER ────────────────────────────────────────────────────────── */}
-      <footer className="border-t border-slate-200 py-10 text-center bg-white space-y-4">
+      <footer className="border-t border-border py-10 text-center bg-card space-y-4">
         <div className="flex items-center justify-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-[#7c5dfa] flex items-center justify-center">
+          <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
               <path d="M4 3h7a4 4 0 0 1 0 8H4V3Z" fill="white" opacity="0.9" />
               <path d="M4 11h5.5l4.5 6H11L7 11.2V17H4v-6Z" fill="white" />
             </svg>
           </div>
           <span className="font-extrabold text-sm text-slate-900">
-            ResuCraft <span className="text-[#7c5dfa]">AI</span>
+            ResuCraft <span className="text-primary">AI</span>
           </span>
         </div>
         <p className="text-xs text-slate-500">
