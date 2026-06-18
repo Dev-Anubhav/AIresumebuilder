@@ -54,7 +54,7 @@ export default function DocumentCard({ document, onRename, onDelete, onShare }: 
   };
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 flex flex-col justify-between hover:border-primary/40 transition group relative overflow-hidden">
+    <div className="rounded-xl border border-white/80 bg-white/85 backdrop-blur-md p-4 flex flex-col justify-between hover:border-primary/30 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group relative overflow-hidden">
       {/* Background card accent */}
       <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition" />
 

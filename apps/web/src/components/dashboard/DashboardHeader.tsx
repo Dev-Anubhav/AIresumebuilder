@@ -47,8 +47,7 @@ export default function DashboardHeader(_: DashboardHeaderProps) {
         <Link href="/dashboard" className="flex items-center gap-2.5 group">
           {/* Custom R logo mark */}
           <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-md shadow-primary/10 group-hover:scale-105 transition"
-            style={{ backgroundColor: '#7c5dfa' }}
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-white bg-primary shadow-md shadow-primary/10 group-hover:scale-105 transition"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M4 3h7a4 4 0 0 1 0 8H4V3Z" fill="white" opacity="0.9" />

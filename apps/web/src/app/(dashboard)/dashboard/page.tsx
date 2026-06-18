@@ -145,7 +145,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto px-1">
       {/* ── TOP HERO BANNER ────────────────────────────────────────────────── */}
-      <div className="relative overflow-hidden rounded-2xl bg-card border border-border p-6 shadow-sm">
+      <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md border border-white/95 p-6 shadow-sm">
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-[#ffdcd2]/10 rounded-full blur-2xl pointer-events-none" />
 
@@ -197,13 +197,13 @@ export default function DashboardPage() {
 
             {loadingResumes ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="h-24 rounded-xl border border-border bg-card animate-pulse" />
-                <div className="h-24 rounded-xl border border-border bg-card animate-pulse" />
+                <div className="h-24 rounded-xl border border-white/80 bg-white/70 animate-pulse" />
+                <div className="h-24 rounded-xl border border-white/80 bg-white/70 animate-pulse" />
               </div>
             ) : resumes.length === 0 ? (
               <div
                 onClick={handleCreateResume}
-                className="group cursor-pointer border-2 border-dashed border-border hover:border-primary/50 rounded-xl bg-card/50 p-8 flex flex-col items-center justify-center text-center transition duration-300"
+                className="group cursor-pointer border-2 border-dashed border-white/80 hover:border-primary/50 rounded-xl bg-white/60 backdrop-blur-md p-8 flex flex-col items-center justify-center text-center transition duration-300"
               >
                 <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center mb-3 text-primary group-hover:scale-105 transition duration-300">
                   <Icons.Plus size={20} />
@@ -219,11 +219,11 @@ export default function DashboardPage() {
                   <div
                     key={resume.id}
                     onClick={() => router.push(`/resume/${resume.id}`)}
-                    className="cursor-pointer group relative border border-border hover:border-primary/40 rounded-xl bg-card p-4 flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 h-24 overflow-hidden"
+                    className="cursor-pointer group relative border border-white/80 hover:border-primary/30 rounded-xl bg-white/85 backdrop-blur-md p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 h-24 overflow-hidden"
                   >
                     <div className="flex gap-4">
                       {/* Visual Resume Sheet Mockup */}
-                      <div className="w-10 h-14 rounded bg-muted border border-border/80 flex flex-col p-1.5 shrink-0 select-none group-hover:border-primary/30 transition duration-300">
+                      <div className="w-10 h-14 rounded bg-background border border-border/80 flex flex-col p-1.5 shrink-0 select-none group-hover:border-primary/30 transition duration-300">
                         <div className="h-1.5 w-3/4 bg-primary/30 rounded mb-1" />
                         <div className="h-1 w-1/2 bg-slate-400/20 rounded mb-1.5" />
                         <div className="space-y-0.5">
@@ -307,7 +307,7 @@ export default function DashboardPage() {
         {/* Right: Sidebar Insights (col-span-1) */}
         <div className="space-y-6">
           {/* Quick Search */}
-          <div className="bg-card border border-border rounded-2xl p-4 shadow-sm space-y-3">
+          <div className="bg-white/80 backdrop-blur-md border border-white/90 rounded-2xl p-4 shadow-sm space-y-3">
             <h4 className="font-extrabold text-xs text-slate-900 uppercase tracking-wider">Quick Finder</h4>
             <div className="relative">
               <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={13} />
@@ -321,7 +321,7 @@ export default function DashboardPage() {
           </div>
 
           {/* AI Coach Insights */}
-          <div className="bg-card border border-border rounded-2xl p-5 shadow-sm space-y-4 relative overflow-hidden">
+          <div className="bg-white/80 backdrop-blur-md border border-white/90 rounded-2xl p-5 shadow-sm space-y-4 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none" />
             <h4 className="font-extrabold text-xs text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
               <Icons.Sparkles size={12} className="text-primary" />
@@ -348,14 +348,14 @@ export default function DashboardPage() {
           </div>
 
           {/* Workspace Stats */}
-          <div className="bg-card border border-border rounded-2xl p-5 shadow-sm space-y-3">
+          <div className="bg-white/80 backdrop-blur-md border border-white/90 rounded-2xl p-5 shadow-sm space-y-3">
             <h4 className="font-extrabold text-xs text-slate-900 uppercase tracking-wider">Workspace Health</h4>
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-muted/50 rounded-xl p-3 border border-border/60">
+              <div className="bg-white/60 rounded-xl p-3 border border-white/50">
                 <div className="text-xs text-muted-foreground">Resumes</div>
                 <div className="text-xl font-extrabold text-foreground mt-1">{resumes.length}</div>
               </div>
-              <div className="bg-muted/50 rounded-xl p-3 border border-border/60">
+              <div className="bg-white/60 rounded-xl p-3 border border-white/50">
                 <div className="text-xs text-muted-foreground">PDF Docs</div>
                 <div className="text-xl font-extrabold text-foreground mt-1">{documents.length}</div>
               </div>
@@ -367,7 +367,7 @@ export default function DashboardPage() {
       {/* Share Modal Dialog overlay */}
       {activeShareToken && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="w-full max-w-md bg-card border border-border rounded-xl p-6 shadow-xl relative space-y-4">
+          <div className="w-full max-w-md bg-white/90 backdrop-blur-md border border-white/90 rounded-xl p-6 shadow-xl relative space-y-4">
             <button
               onClick={() => setActiveShareToken(null)}
               className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"

@@ -49,10 +49,10 @@ export default function UploadDropzone({ onUpload, isUploading }: UploadDropzone
       onDragOver={handleDrag}
       onDragLeave={handleDrag}
       onDrop={handleDrop}
-      className={`border-2 border-dashed rounded-xl p-8 text-center flex flex-col items-center justify-center cursor-pointer transition ${
+      className={`border-2 border-dashed rounded-xl p-8 text-center flex flex-col items-center justify-center cursor-pointer backdrop-blur-md transition duration-300 ${
         isDragActive
-          ? 'border-primary bg-primary/5'
-          : 'border-border bg-card hover:bg-muted/40 hover:border-primary/45'
+          ? 'border-primary bg-primary/10'
+          : 'border-white/80 bg-white/60 hover:bg-white/80 hover:border-primary/40 shadow-sm'
       }`}
       onClick={() => inputRef.current?.click()}
     >
