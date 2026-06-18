@@ -254,7 +254,7 @@ function TemplatePickerModal({
               onSelect(selected);
               onClose();
             }}
-            className="px-5 py-2 bg-primary hover:bg-[#6d4ae5] text-white font-semibold text-xs rounded-lg shadow-sm shadow-primary/10 transition"
+            className="px-5 py-2 bg-primary hover:bg-primary/95 text-white font-semibold text-xs rounded-lg shadow-sm shadow-primary/10 transition"
           >
             Apply Template
           </button>
@@ -530,7 +530,7 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
 
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-[#6d4ae5] text-white font-semibold text-xs transition shadow-md shadow-primary/10"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-primary/95 text-white font-semibold text-xs transition shadow-md shadow-primary/10"
           >
             <Icons.Download size={13} /> Export PDF
           </button>
@@ -550,7 +550,7 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`flex-1 min-w-[56px] text-center py-3 text-[10px] font-bold uppercase tracking-wider transition border-b-2 ${
+                className={`flex-1 shrink-0 whitespace-nowrap px-3 text-center py-3 text-[10px] font-bold uppercase tracking-wider transition border-b-2 ${
                   activeTab === tab
                     ? 'border-primary text-primary bg-muted/30'
                     : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -874,8 +874,8 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
                 {msg.suggestion && (
                   <div className="mt-2 w-full max-w-[92%] bg-[#f5f3ff] border border-indigo-200 rounded-xl p-3 space-y-2">
                     <div className="flex items-center gap-1.5">
-                      <div className="w-4 h-4 rounded bg-[#7c5dfa]/10 flex items-center justify-center">
-                        <Icons.Sparkles size={9} className="text-[#7c5dfa]" />
+                      <div className="w-4 h-4 rounded bg-primary/10 flex items-center justify-center">
+                        <Icons.Sparkles size={9} className="text-primary" />
                       </div>
                       <span className="text-[10px] font-bold text-primary">AI Suggestion</span>
                     </div>
@@ -886,7 +886,7 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
                     </p>
                     <button
                       onClick={() => applySuggestion(msg.suggestion)}
-                      className="w-full py-1.5 bg-[#7c5dfa] hover:bg-[#6d4ae5] text-white font-semibold rounded-lg text-[10px] shadow-sm transition flex items-center justify-center gap-1"
+                      className="w-full py-1.5 bg-primary hover:bg-primary/95 text-white font-semibold rounded-lg text-[10px] shadow-sm transition flex items-center justify-center gap-1"
                     >
                       <Icons.ArrowRight size={10} /> Apply to Resume
                     </button>
@@ -923,7 +923,7 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
               <button
                 onClick={handleSendMessage}
                 disabled={!inputMessage.trim() || isAiResponding}
-                className="w-8 h-8 rounded-xl bg-primary hover:bg-[#6d4ae5] disabled:opacity-40 text-white flex items-center justify-center transition shrink-0"
+                className="w-8 h-8 rounded-xl bg-primary hover:bg-primary/95 disabled:opacity-40 text-white flex items-center justify-center transition shrink-0"
               >
                 <Icons.Send size={13} />
               </button>

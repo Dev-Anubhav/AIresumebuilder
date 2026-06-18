@@ -73,7 +73,7 @@ export default function UploadDropzone({ onUpload, isUploading }: UploadDropzone
       </p>
       <button
         type="button"
-        className="px-4 py-2 rounded-lg bg-primary hover:bg-[#6d4ae5] text-white text-xs font-semibold shadow-sm shadow-primary/10 transition flex items-center gap-1.5"
+        className="px-4 py-2 rounded-lg bg-primary hover:bg-primary/95 text-white text-xs font-semibold shadow-sm shadow-primary/10 transition flex items-center gap-1.5"
         disabled={isUploading}
       >
         {isUploading ? <Icons.Loader2 size={12} className="animate-spin" /> : <Icons.Plus size={12} />}

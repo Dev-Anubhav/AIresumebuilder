@@ -75,12 +75,12 @@ export default function SharedDocumentPage({ params }: { params: Promise<{ share
           </div>
 
           <div className="w-full lg:w-[450px] flex flex-col min-h-0">
-            <div className="flex border-b border-border bg-card p-1 rounded-t-xl">
+            <div className="flex border-b border-border bg-card p-1 rounded-t-xl overflow-x-auto scrollbar-none">
               {(['chat', 'summary', 'extracted'] as const).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex-1 py-2 rounded text-xs font-semibold uppercase tracking-wider transition capitalize ${
+                  className={`flex-1 shrink-0 whitespace-nowrap px-3 py-2 rounded text-xs font-semibold uppercase tracking-wider transition capitalize ${
                     activeTab === tab
                       ? 'bg-primary text-white shadow-sm shadow-primary/10'
                       : 'text-muted-foreground hover:text-foreground'

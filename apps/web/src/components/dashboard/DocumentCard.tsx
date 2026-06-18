@@ -99,7 +99,7 @@ export default function DocumentCard({ document, onRename, onDelete, onShare }: 
       <div className="pt-4 mt-4 border-t border-border flex items-center justify-between">
         <Link
           href={`/documents/${document.id}`}
-          className={`px-3 py-1.5 rounded bg-primary hover:bg-[#6d4ae5] text-white text-xs font-semibold flex items-center gap-1 transition shadow-sm shadow-primary/10 ${
+          className={`px-3 py-1.5 rounded bg-primary hover:bg-primary/95 text-white text-xs font-semibold flex items-center gap-1 transition shadow-sm shadow-primary/10 ${
             document.status !== 'READY' && 'opacity-50 pointer-events-none'
           }`}
         >

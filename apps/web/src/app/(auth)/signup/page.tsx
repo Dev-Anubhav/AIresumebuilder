@@ -99,7 +99,7 @@ export default function SignupPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-2.5 rounded-lg bg-primary hover:bg-[#6d4ae5] text-white text-xs font-semibold shadow-md shadow-primary/15 transition flex items-center justify-center gap-2"
+            className="w-full py-2.5 rounded-lg bg-primary hover:bg-primary/95 text-white text-xs font-semibold shadow-md shadow-primary/15 transition flex items-center justify-center gap-2"
           >
             {isLoading && <Icons.Loader2 size={12} className="animate-spin" />}
             {isLoading ? 'Creating Account...' : 'Sign Up'}
