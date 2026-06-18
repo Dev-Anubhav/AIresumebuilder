@@ -1,0 +1,129 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String       @id @default(cuid())
+  email         String       @unique
+  name          String
+  passwordHash  String
+  avatarColor   String       @default("#6366f1")
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  documents     Document[]
+  annotations   Annotation[]
+  resumes       Resume[]
+}
+
+model Document {
+  id              String            @id @default(cuid())
+  title           String
+  originalName    String
+  fileSize        Int
+  pageCount       Int               @default(0)
+  status          DocumentStatus    @default(UPLOADING)
+  filePath        String
+  userId          String
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chunks          DocumentChunk[]
+  chatMessages    ChatMessage[]
+  annotations     Annotation[]
+  analysis        DocumentAnalysis?
+  shareTokens     ShareToken[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+enum DocumentStatus {
+  UPLOADING
+  PROCESSING
+  READY
+  FAILED
+}
+
+model DocumentChunk {
+  id          String    @id @default(cuid())
+  documentId  String
+  document    Document  @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  content     String
+  pageNumber  Int
+  chunkIndex  Int
+  embedding   Unsupported("vector(1536)")?
+  createdAt   DateTime  @default(now())
+}
+
+model ChatMessage {
+  id          String      @id @default(cuid())
+  documentId  String
+  document    Document    @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  role        MessageRole
+  content     String
+  citations   Json?       // [{pageNumber, chunkId, relevanceScore}]
+  createdAt   DateTime    @default(now())
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+}
+
+model DocumentAnalysis {
+  id              String    @id @default(cuid())
+  documentId      String    @unique
+  document        Document  @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  summary         String
+  keyInsights     Json      // string[]
+  extractedData   Json      // structured key-value pairs
+  documentType    String    // "contract", "report", "insurance", "research" etc
+  language        String
+  sentiment       String?
+  riskFlags       Json?     // for insurance/legal docs
+  createdAt       DateTime  @default(now())
+}
+
+model Annotation {
+  id          String    @id @default(cuid())
+  documentId  String
+  document    Document  @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pageNumber  Int
+  x           Float
+  y           Float
+  width       Float
+  height      Float
+  text        String
+  color       String    @default("#fbbf24")
+  createdAt   DateTime  @default(now())
+}
+
+model ShareToken {
+  id          String    @id @default(cuid())
+  documentId  String
+  document    Document  @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  token       String    @unique @default(cuid())
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Resume {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String   @default("Untitled Resume")
+  templateId  String   @default("minimalist")
+  personalInfo Json    // { name, email, phone, website, location, title, summary }
+  experience   Json    // Array of { company, role, startDate, endDate, current, description, location }
+  education    Json    // Array of { institution, degree, fieldOfStudy, startDate, endDate, current, location, gpa }
+  skills       Json    // Array of string or { category, items: string[] }
+  projects     Json    // Array of { name, role, description, link, technologies }
+  custom       Json?   // Custom sections (certifications, languages, etc.)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

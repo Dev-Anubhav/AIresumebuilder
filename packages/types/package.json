@@ -1,0 +1,22 @@
+{
+  "name": "@ai-document-platform/types",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@ai-document-platform/tsconfig": "workspace:*",
+    "typescript": "^5.0.0"
+  }
+}
