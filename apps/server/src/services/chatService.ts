@@ -30,7 +30,7 @@ export const retrieveRelevantChunks = async (
       limit
     );
 
-    return results.map((r) => ({
+    return results.map((r: any) => ({
       id: r.id,
       content: r.content,
       pageNumber: r.pageNumber,
@@ -44,7 +44,7 @@ export const retrieveRelevantChunks = async (
       take: limit * 2,
     });
     
-    return chunks.map((c) => ({
+    return chunks.map((c: any) => ({
       id: c.id,
       content: c.content,
       pageNumber: c.pageNumber,

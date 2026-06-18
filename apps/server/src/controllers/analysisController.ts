@@ -35,7 +35,7 @@ export const regenerateAnalysis = async (req: AuthRequest, res: Response) => {
 
     if (!document) return res.status(404).json({ error: 'Document not found' });
 
-    const fullText = document.chunks.map((c) => c.content).join('\n');
+    const fullText = document.chunks.map((c: any) => c.content).join('\n');
     const analysis = await generateSummary(fullText);
     const extractedData = await extractStructuredData(fullText, analysis.documentType);
 

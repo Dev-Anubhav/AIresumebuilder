@@ -94,7 +94,7 @@ export const chatOnSharedDocument = async (req: Request, res: Response) => {
       take: 20,
     });
 
-    const formattedHistory = history.map((h) => ({
+    const formattedHistory = history.map((h: any) => ({
       role: h.role === 'USER' ? 'user' as const : 'assistant' as const,
       content: h.content,
     }));
