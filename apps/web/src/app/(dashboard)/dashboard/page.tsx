@@ -143,126 +143,225 @@ export default function DashboardPage() {
   );
 
   return (
-    <div className="space-y-8">
-      {/* Welcome & Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Workspace Dashboard</h1>
-          <p className="text-xs text-muted-foreground">Manage and analyze your enterprise agreements and PDFs.</p>
-        </div>
+    <div className="space-y-6 max-w-7xl mx-auto px-1">
+      {/* ── TOP HERO BANNER ────────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden rounded-2xl bg-card border border-border p-6 shadow-sm">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-[#ffdcd2]/10 rounded-full blur-2xl pointer-events-none" />
 
-        {/* Searching bar */}
-        <div className="relative w-full md:w-72">
-          <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={14} />
-          <input
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search documents..."
-            className="w-full bg-card border border-border rounded-lg pl-9 pr-4 py-2 text-xs text-foreground placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white transition"
-          />
-        </div>
-      </div>
-
-      {/* Upload area */}
-      <UploadDropzone onUpload={handleUpload} isUploading={isUploading} />
-
-      {/* ATS Resumes Section */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="font-bold text-foreground text-sm flex items-center gap-1.5">
-            <Icons.Sparkles size={16} className="text-primary" /> ATS Resume Workspace ({resumes.length})
-          </h3>
-          <button
-            onClick={handleCreateResume}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary hover:bg-[#6d4ae5] text-white font-semibold text-xs transition shadow-sm shadow-primary/15"
-          >
-            <Icons.Plus size={12} /> Create Resume
-          </button>
-        </div>
-
-        {loadingResumes ? (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="h-28 rounded-xl border border-border bg-card animate-pulse" />
-          </div>
-        ) : resumes.length === 0 ? (
-          <div
-            onClick={handleCreateResume}
-            className="group cursor-pointer border border-dashed border-border hover:border-primary/50 rounded-xl bg-card/40 p-6 flex flex-col items-center justify-center text-center transition"
-          >
-            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center mb-3 text-muted-foreground group-hover:scale-105 transition">
-              <Icons.Plus size={18} />
+        <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold tracking-wider uppercase">
+              <Icons.Sparkles size={10} />
+              AI Resume Assistant Active
             </div>
-            <h4 className="text-xs font-semibold text-foreground">Create your first ATS-friendly resume</h4>
-            <p className="text-[10px] text-muted-foreground mt-0.5">Choose from 10 premium templates and correct errors live with AI.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {resumes.map((resume) => (
-              <div
-                key={resume.id}
-                onClick={() => router.push(`/resume/${resume.id}`)}
-                className="cursor-pointer group relative border border-border hover:border-primary/50 rounded-xl bg-card p-4 flex flex-col justify-between hover:shadow-md transition h-28"
-              >
-                <div>
-                  <h4 className="text-xs font-bold text-foreground truncate group-hover:text-primary transition">
-                    {resume.title}
-                  </h4>
-                  <p className="text-[10px] text-muted-foreground mt-1 capitalize">// Template: {resume.templateId}</p>
-                </div>
-                <div className="flex justify-between items-center text-[9px] text-muted-foreground">
-                  <span>Updated {new Date(resume.updatedAt).toLocaleDateString()}</span>
-                  <button
-                    onClick={(e) => handleDeleteResume(resume.id, e)}
-                    className="p-1 hover:bg-muted text-muted-foreground hover:text-rose-500 rounded transition"
-                  >
-                    <Icons.Trash2 size={12} />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Documents Grid */}
-      <div className="space-y-4">
-        <h3 className="font-bold text-foreground text-sm flex items-center gap-1.5">
-          <Icons.FileText size={16} className="text-primary" /> Captured Documents ({filteredDocs.length})
-        </h3>
-
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="h-44 rounded-xl border border-border bg-card animate-pulse" />
-            ))}
-          </div>
-        ) : filteredDocs.length === 0 ? (
-          <div className="text-center py-16 border border-border rounded-xl bg-card flex flex-col items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-4 text-muted-foreground">
-              <Icons.FileText size={24} />
-            </div>
-            <h4 className="text-sm font-semibold text-foreground">No Documents Found</h4>
-            <p className="text-xs text-muted-foreground mt-1">
-              Upload your first PDF document to begin text extraction and semantic search.
+            <h2 className="text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">
+              Create and Optimize Your Career Assets
+            </h2>
+            <p className="text-xs text-muted-foreground max-w-xl leading-relaxed">
+              Build ATS-friendly resumes or extract key metrics from reference letters, job specs, and contract files. Add AI insights to double your callback rates.
             </p>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {filteredDocs.map((doc) => (
-              <DocumentCard
-                key={doc.id}
-                document={doc}
-                onRename={(id, title) => renameMutation.mutate({ id, title })}
-                onDelete={(id) => {
-                  if (confirm('Are you sure you want to delete this document?')) {
-                    deleteMutation.mutate(id);
-                  }
-                }}
-                onShare={(id) => shareMutation.mutate(id)}
-              />
-            ))}
+
+          <div className="flex gap-2 w-full md:w-auto">
+            <button
+              onClick={handleCreateResume}
+              className="flex-1 md:flex-none px-4 py-2.5 rounded-xl bg-primary hover:bg-primary/95 text-white font-bold text-xs shadow-md shadow-primary/10 transition flex items-center justify-center gap-1.5"
+            >
+              <Icons.Plus size={13} /> Create ATS Resume
+            </button>
           </div>
-        )}
+        </div>
+      </div>
+
+      {/* ── MAIN DASHBOARD GRID ────────────────────────────────────────────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left: Main Content (col-span-2) */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* ATS Resumes Section */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="font-extrabold text-slate-900 text-sm flex items-center gap-1.5">
+                <Icons.Sparkles size={15} className="text-primary animate-pulse" />
+                Your Resume Builders ({resumes.length})
+              </h3>
+              {resumes.length > 0 && (
+                <button
+                  onClick={handleCreateResume}
+                  className="text-xs text-primary hover:underline font-bold"
+                >
+                  + Create another
+                </button>
+              )}
+            </div>
+
+            {loadingResumes ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="h-24 rounded-xl border border-border bg-card animate-pulse" />
+                <div className="h-24 rounded-xl border border-border bg-card animate-pulse" />
+              </div>
+            ) : resumes.length === 0 ? (
+              <div
+                onClick={handleCreateResume}
+                className="group cursor-pointer border-2 border-dashed border-border hover:border-primary/50 rounded-xl bg-card/50 p-8 flex flex-col items-center justify-center text-center transition duration-300"
+              >
+                <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center mb-3 text-primary group-hover:scale-105 transition duration-300">
+                  <Icons.Plus size={20} />
+                </div>
+                <h4 className="text-xs font-bold text-foreground">Build your first ATS-friendly resume</h4>
+                <p className="text-[10px] text-muted-foreground mt-1 max-w-sm">
+                  Select from 10 premium layouts, track real-time ATS keyword matching, and get tailored coaching.
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {resumes.map((resume) => (
+                  <div
+                    key={resume.id}
+                    onClick={() => router.push(`/resume/${resume.id}`)}
+                    className="cursor-pointer group relative border border-border hover:border-primary/40 rounded-xl bg-card p-4 flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 h-24 overflow-hidden"
+                  >
+                    <div className="flex gap-4">
+                      {/* Visual Resume Sheet Mockup */}
+                      <div className="w-10 h-14 rounded bg-muted border border-border/80 flex flex-col p-1.5 shrink-0 select-none group-hover:border-primary/30 transition duration-300">
+                        <div className="h-1.5 w-3/4 bg-primary/30 rounded mb-1" />
+                        <div className="h-1 w-1/2 bg-slate-400/20 rounded mb-1.5" />
+                        <div className="space-y-0.5">
+                          <div className="h-0.5 w-full bg-slate-300/40 rounded" />
+                          <div className="h-0.5 w-5/6 bg-slate-300/40 rounded" />
+                          <div className="h-0.5 w-2/3 bg-slate-300/40 rounded" />
+                        </div>
+                      </div>
+
+                      <div className="min-w-0 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h4 className="text-xs font-bold text-foreground truncate group-hover:text-primary transition duration-200">
+                            {resume.title}
+                          </h4>
+                          <p className="text-[10px] text-muted-foreground mt-0.5 capitalize">// {resume.templateId} template</p>
+                        </div>
+                        <div className="flex justify-between items-center text-[9px] text-muted-foreground">
+                          <span>Updated {new Date(resume.updatedAt).toLocaleDateString()}</span>
+                          <button
+                            onClick={(e) => handleDeleteResume(resume.id, e)}
+                            className="p-1 hover:bg-rose-50 text-muted-foreground hover:text-rose-500 rounded transition"
+                            title="Delete resume"
+                          >
+                            <Icons.Trash2 size={11} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Captured Documents Section */}
+          <div className="space-y-3 pt-2">
+            <h3 className="font-extrabold text-slate-900 text-sm flex items-center gap-1.5">
+              <Icons.FileText size={15} className="text-primary" />
+              Document Analysis Platform ({filteredDocs.length})
+            </h3>
+
+            {/* Upload Area */}
+            <UploadDropzone onUpload={handleUpload} isUploading={isUploading} />
+
+            {/* Documents List */}
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="h-32 rounded-xl border border-border bg-card animate-pulse" />
+                <div className="h-32 rounded-xl border border-border bg-card animate-pulse" />
+              </div>
+            ) : filteredDocs.length === 0 ? (
+              <div className="text-center py-10 border border-border rounded-xl bg-card/40 flex flex-col items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center mb-3 text-muted-foreground">
+                  <Icons.FileText size={18} />
+                </div>
+                <h4 className="text-xs font-bold text-foreground">No analysis documents</h4>
+                <p className="text-[10px] text-muted-foreground mt-1 max-w-xs">
+                  Upload job descriptions or professional materials to analyze keywords and ask questions.
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {filteredDocs.map((doc) => (
+                  <DocumentCard
+                    key={doc.id}
+                    document={doc}
+                    onRename={(id, title) => renameMutation.mutate({ id, title })}
+                    onDelete={(id) => {
+                      if (confirm('Are you sure you want to delete this document?')) {
+                        deleteMutation.mutate(id);
+                      }
+                    }}
+                    onShare={(id) => shareMutation.mutate(id)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Right: Sidebar Insights (col-span-1) */}
+        <div className="space-y-6">
+          {/* Quick Search */}
+          <div className="bg-card border border-border rounded-2xl p-4 shadow-sm space-y-3">
+            <h4 className="font-extrabold text-xs text-slate-900 uppercase tracking-wider">Quick Finder</h4>
+            <div className="relative">
+              <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={13} />
+              <input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Find resumes or PDFs..."
+                className="w-full bg-muted border border-border rounded-xl pl-9 pr-4 py-2 text-[11px] text-foreground placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white transition"
+              />
+            </div>
+          </div>
+
+          {/* AI Coach Insights */}
+          <div className="bg-card border border-border rounded-2xl p-5 shadow-sm space-y-4 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none" />
+            <h4 className="font-extrabold text-xs text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+              <Icons.Sparkles size={12} className="text-primary" />
+              Coach Insights
+            </h4>
+
+            <div className="space-y-3">
+              {[
+                { title: 'Action-Oriented Verbs', desc: 'Start bullet points with strong verbs (e.g., Led, Developed, Optimized).' },
+                { title: 'Quantifiable Metrics', desc: 'Describe results with solid numbers (e.g., Increased sales by 15%, Cut API latency).' },
+                { title: 'Tailored Formatting', desc: 'Map your resume layout specifically to match target job industry requirements.' },
+              ].map((tip, i) => (
+                <div key={i} className="text-xs border-l-2 border-primary/20 pl-3 py-0.5">
+                  <div className="font-bold text-foreground text-[11px]">{tip.title}</div>
+                  <p className="text-[10px] text-muted-foreground mt-0.5 leading-relaxed">{tip.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-primary/5 border border-primary/10 rounded-xl p-3 text-[10px] text-primary font-semibold flex items-center gap-2">
+              <Icons.Sparkles size={12} className="shrink-0" />
+              <span>ProTip: Ask the AI Coach directly inside your workspace to suggest template changes.</span>
+            </div>
+          </div>
+
+          {/* Workspace Stats */}
+          <div className="bg-card border border-border rounded-2xl p-5 shadow-sm space-y-3">
+            <h4 className="font-extrabold text-xs text-slate-900 uppercase tracking-wider">Workspace Health</h4>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-muted/50 rounded-xl p-3 border border-border/60">
+                <div className="text-xs text-muted-foreground">Resumes</div>
+                <div className="text-xl font-extrabold text-foreground mt-1">{resumes.length}</div>
+              </div>
+              <div className="bg-muted/50 rounded-xl p-3 border border-border/60">
+                <div className="text-xs text-muted-foreground">PDF Docs</div>
+                <div className="text-xl font-extrabold text-foreground mt-1">{documents.length}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Share Modal Dialog overlay */}
@@ -292,7 +391,7 @@ export default function DashboardPage() {
                   navigator.clipboard.writeText(`${window.location.origin}/shared/${activeShareToken}`);
                   alert('Link copied to clipboard!');
                 }}
-                className="px-3.5 py-2 rounded-lg bg-primary text-white text-xs font-semibold hover:bg-[#6d4ae5] transition"
+                className="px-3.5 py-2 rounded-lg bg-primary text-white text-xs font-semibold hover:bg-[#483a93] transition"
               >
                 Copy
               </button>
