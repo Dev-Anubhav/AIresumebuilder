@@ -29,6 +29,9 @@ export default function DashboardPage() {
   const [clGenerated, setClGenerated] = useState('');
   const [clGenerating, setClGenerating] = useState(false);
 
+  // Custom Delete Confirm modal state
+  const [deleteConfirm, setDeleteConfirm] = useState<{ id: string; type: 'resume' | 'document'; title: string } | null>(null);
+
   // Document Section Ref for scroll matching
   const docSectionRef = useRef<HTMLDivElement>(null);
 
@@ -150,16 +153,22 @@ export default function DashboardPage() {
     }
   };
 
-  const handleDeleteResume = async (id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!confirm('Are you sure you want to delete this resume?')) return;
+  const executeDelete = async () => {
+    if (!deleteConfirm) return;
+    const { id, type } = deleteConfirm;
     try {
-      const res = await fetch(`/api/resumes/${id}`, { method: 'DELETE' });
-      if (res.ok) {
-        setResumes((prev) => prev.filter((r) => r.id !== id));
+      if (type === 'resume') {
+        const res = await fetch(`/api/resumes/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          setResumes((prev) => prev.filter((r) => r.id !== id));
+        }
+      } else {
+        await deleteMutation.mutateAsync(id);
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      setDeleteConfirm(null);
     }
   };
 
@@ -335,7 +344,10 @@ ${userName}`;
                         <div className="flex justify-between items-center text-[9px] text-muted-foreground font-medium">
                           <span>Updated {new Date(resume.updatedAt).toLocaleDateString()}</span>
                           <button
-                            onClick={(e) => handleDeleteResume(resume.id, e)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setDeleteConfirm({ id: resume.id, type: 'resume', title: resume.title });
+                            }}
                             className="p-1 hover:bg-rose-50 text-muted-foreground hover:text-rose-500 rounded transition"
                             title="Delete resume"
                           >
@@ -384,9 +396,8 @@ ${userName}`;
                     document={doc}
                     onRename={(id, title) => renameMutation.mutate({ id, title })}
                     onDelete={(id) => {
-                      if (confirm('Are you sure you want to delete this document?')) {
-                        deleteMutation.mutate(id);
-                      }
+                      const doc = documents.find((d) => d.id === id);
+                      setDeleteConfirm({ id, type: 'document', title: doc?.title || 'this document' });
                     }}
                     onShare={(id) => shareMutation.mutate(id)}
                   />
@@ -598,6 +609,40 @@ ${userName}`;
                 className="px-3.5 py-2 rounded-lg bg-[#0066ff] text-white text-xs font-semibold hover:bg-[#0052cc] transition"
               >
                 Copy
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal Overlay */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
+          <div className="w-full max-w-sm bg-white border border-slate-200 rounded-2xl p-6 shadow-xl relative space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center text-rose-600 shrink-0">
+                <Icons.Trash2 size={18} />
+              </div>
+              <div>
+                <h4 className="font-extrabold text-slate-900 text-sm">Delete {deleteConfirm.type === 'resume' ? 'Resume' : 'Document'}</h4>
+                <p className="text-[10px] text-muted-foreground mt-0.5">This action cannot be undone.</p>
+              </div>
+            </div>
+            <p className="text-[11px] text-slate-600 leading-relaxed">
+              Are you sure you want to delete <span className="font-bold text-slate-800">"{deleteConfirm.title}"</span>?
+            </p>
+            <div className="flex gap-2 justify-end pt-2">
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                className="px-4 py-2 border border-slate-200 text-slate-600 text-xs font-bold rounded-lg hover:bg-slate-50 transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={executeDelete}
+                className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-lg shadow-sm transition"
+              >
+                Delete
               </button>
             </div>
           </div>
