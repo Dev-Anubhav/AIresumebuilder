@@ -16,6 +16,8 @@ export interface Document {
   uploadedAt: string;
   updatedAt: string;
   shareToken?: string | null;
+  // The server embeds the related analysis object when fetching document details
+  analysis?: DocumentAnalysis | null;
 }
 
 export interface ExtractedField {
