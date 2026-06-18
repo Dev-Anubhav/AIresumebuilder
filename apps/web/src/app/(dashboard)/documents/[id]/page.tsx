@@ -101,17 +101,17 @@ export default function DocumentDetailsPage({ params }: { params: Promise<{ id: 
   return (
     <div className="h-[82vh] flex flex-col gap-4">
       {/* Detail bar */}
-      <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+      <div className="flex items-center justify-between border-b border-border pb-3">
         <div className="flex items-center gap-3">
           <Link
             href="/dashboard"
-            className="p-2 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+            className="p-2 rounded bg-muted hover:bg-slate-200/50 text-muted-foreground border border-border transition"
           >
             <Icons.ChevronLeft size={16} />
           </Link>
           <div>
-            <h2 className="font-bold text-slate-100 text-lg">{activeDocument.title}</h2>
-            <p className="text-[10px] text-slate-500">Document ID: {activeDocument.id}</p>
+            <h2 className="font-bold text-foreground text-lg">{activeDocument.title}</h2>
+            <p className="text-[10px] text-muted-foreground">Document ID: {activeDocument.id}</p>
           </div>
         </div>
       </div>
@@ -125,15 +125,15 @@ export default function DocumentDetailsPage({ params }: { params: Promise<{ id: 
 
         {/* Right Pane - AI Tabs Layout */}
         <div className="w-full lg:w-[450px] flex flex-col min-h-0">
-          <div className="flex border-b border-slate-800 bg-[#131b2e] p-1 rounded-t-xl">
+          <div className="flex border-b border-border bg-card p-1 rounded-t-xl">
             {(['chat', 'summary', 'extracted', 'annotations'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`flex-1 py-2 rounded text-xs font-semibold uppercase tracking-wider transition capitalize ${
                   activeTab === tab
-                    ? 'bg-primary text-white'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-primary text-white shadow-sm shadow-primary/10'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 {tab}
@@ -141,7 +141,7 @@ export default function DocumentDetailsPage({ params }: { params: Promise<{ id: 
             ))}
           </div>
 
-          <div className="flex-1 bg-[#131b2e] border-x border-b border-slate-800 rounded-b-xl min-h-0 relative">
+          <div className="flex-1 bg-card border-x border-b border-border rounded-b-xl min-h-0 relative">
             {activeTab === 'chat' && <ChatPanel documentId={id} />}
 
             {activeTab === 'summary' && (

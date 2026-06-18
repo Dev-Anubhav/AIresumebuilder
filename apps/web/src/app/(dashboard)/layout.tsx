@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const isResumeBuilder = pathname?.startsWith('/resume/');
 
   return (
-    <div className="h-screen bg-[#0b0f19] flex flex-col overflow-hidden">
+    <div className="h-screen bg-background flex flex-col overflow-hidden">
       {!isResumeBuilder && <DashboardHeader />}
       {isResumeBuilder ? (
         // Full-screen layout for resume builder — no padding, no max-width

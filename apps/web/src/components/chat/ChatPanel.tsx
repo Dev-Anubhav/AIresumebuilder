@@ -71,17 +71,17 @@ export default function ChatPanel({ documentId, isShared = false, shareId }: Cha
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#131b2e] border border-slate-800 rounded-xl overflow-hidden">
+    <div className="flex flex-col h-full bg-card border border-border rounded-xl overflow-hidden">
       {/* Panel Header */}
-      <div className="flex items-center justify-between p-4 border-b border-slate-800 bg-[#0d1322]">
+      <div className="flex items-center justify-between p-4 border-b border-border bg-[#fbfaf8]">
         <div className="flex items-center gap-2">
           <Icons.MessageSquare className="text-primary" size={18} />
-          <h3 className="font-semibold text-slate-200">AI Document Assistant</h3>
+          <h3 className="font-semibold text-foreground">AI Document Assistant</h3>
         </div>
         {!isShared && (
           <button
             onClick={() => clearChat()}
-            className="p-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 text-xs flex items-center gap-1 transition"
+            className="p-1.5 rounded bg-muted hover:bg-slate-200/50 text-muted-foreground hover:text-foreground text-xs flex items-center gap-1 border border-border transition"
           >
             <Icons.Trash2 size={12} /> Clear Chat
           </button>
@@ -95,8 +95,8 @@ export default function ChatPanel({ documentId, isShared = false, shareId }: Cha
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary">
               <Icons.Sparkles size={24} />
             </div>
-            <h4 className="text-sm font-semibold text-slate-300 mb-1">RAG-Powered Conversations</h4>
-            <p className="text-xs text-slate-400 max-w-xs leading-relaxed">
+            <h4 className="text-sm font-semibold text-foreground mb-1">RAG-Powered Conversations</h4>
+            <p className="text-xs text-muted-foreground max-w-xs leading-relaxed">
               Ask any question about termination clauses, pricing matrices, SLAs, or risk elements.
             </p>
           </div>
@@ -110,21 +110,21 @@ export default function ChatPanel({ documentId, isShared = false, shareId }: Cha
             <div
               className={`max-w-[85%] rounded-xl px-4 py-2.5 text-sm ${
                 msg.role === 'USER'
-                  ? 'bg-primary text-white rounded-br-none'
-                  : 'bg-slate-800 text-slate-200 rounded-bl-none border border-slate-700'
+                  ? 'bg-primary text-white rounded-br-none shadow-sm'
+                  : 'bg-muted text-foreground rounded-bl-none border border-border'
               }`}
             >
               <p className="whitespace-pre-wrap">{msg.content}</p>
 
               {/* Citations overlays */}
               {msg.role === 'ASSISTANT' && msg.citations && msg.citations.length > 0 && (
-                <div className="mt-2 pt-2 border-t border-slate-700 flex flex-wrap gap-1.5 items-center">
-                  <span className="text-[10px] text-slate-400">Sources:</span>
+                <div className="mt-2 pt-2 border-t border-border flex flex-wrap gap-1.5 items-center">
+                  <span className="text-[10px] text-muted-foreground">Sources:</span>
                   {msg.citations.map((cit, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleCitationClick(cit.pageNumber)}
-                      className="px-2 py-0.5 rounded bg-sky-950 hover:bg-sky-900 border border-sky-500/30 text-sky-400 text-[10px] font-medium flex items-center gap-1 transition"
+                      className="px-2 py-0.5 rounded bg-sky-50 hover:bg-sky-100/70 border border-sky-200 text-sky-600 text-[10px] font-medium flex items-center gap-1 transition"
                     >
                       <Icons.FileText size={10} /> Page {cit.pageNumber}
                     </button>
@@ -138,7 +138,7 @@ export default function ChatPanel({ documentId, isShared = false, shareId }: Cha
         {/* Render SSE streaming token buffers */}
         {isStreaming && (
           <div className="flex flex-col items-start space-y-1">
-            <div className="max-w-[85%] rounded-xl px-4 py-2.5 text-sm bg-slate-800 text-slate-200 rounded-bl-none border border-slate-700">
+            <div className="max-w-[85%] rounded-xl px-4 py-2.5 text-sm bg-muted text-foreground rounded-bl-none border border-border">
               {streamingText ? (
                 <>
                   <p className="whitespace-pre-wrap">{streamingText}</p>
@@ -146,9 +146,9 @@ export default function ChatPanel({ documentId, isShared = false, shareId }: Cha
                 </>
               ) : (
                 <div className="flex items-center gap-1 py-1 px-1.5">
-                  <span className="w-2 h-2 rounded-full bg-slate-500 animate-bounce [animation-delay:-0.3s]" />
-                  <span className="w-2 h-2 rounded-full bg-slate-500 animate-bounce [animation-delay:-0.15s]" />
-                  <span className="w-2 h-2 rounded-full bg-slate-500 animate-bounce" />
+                  <span className="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:-0.3s]" />
+                  <span className="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:-0.15s]" />
+                  <span className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" />
                 </div>
               )}
             </div>
@@ -161,22 +161,22 @@ export default function ChatPanel({ documentId, isShared = false, shareId }: Cha
 
       {/* Suggested Followups */}
       {messages.length > 0 && !isStreaming && (
-        <div className="p-3 bg-slate-900 border-t border-slate-800 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-none">
+        <div className="p-3 bg-[#fbfaf8] border-t border-border flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-none">
           <button
             onClick={() => setInputText('What is the Limitation of Liability?')}
-            className="text-[11px] px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/50 transition"
+            className="text-[11px] px-2.5 py-1 rounded-full bg-card hover:bg-slate-50 text-muted-foreground hover:text-foreground border border-border transition"
           >
             Limitation of Liability?
           </button>
           <button
             onClick={() => setInputText('Identify the SLA uptime target.')}
-            className="text-[11px] px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/50 transition"
+            className="text-[11px] px-2.5 py-1 rounded-full bg-card hover:bg-slate-50 text-muted-foreground hover:text-foreground border border-border transition"
           >
             SLA uptime?
           </button>
           <button
             onClick={() => setInputText('How is the contract terminated?')}
-            className="text-[11px] px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/50 transition"
+            className="text-[11px] px-2.5 py-1 rounded-full bg-card hover:bg-slate-50 text-muted-foreground hover:text-foreground border border-border transition"
           >
             Contract renewal terms?
           </button>
@@ -184,17 +184,17 @@ export default function ChatPanel({ documentId, isShared = false, shareId }: Cha
       )}
 
       {/* Form controls */}
-      <form onSubmit={handleSend} className="p-4 bg-[#0d1322] border-t border-slate-800 flex gap-2">
+      <form onSubmit={handleSend} className="p-4 bg-[#fbfaf8] border-t border-border flex gap-2">
         <input
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder="Ask a question about this document..."
-          className="flex-1 px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 text-sm text-slate-200 focus:outline-none focus:ring-1 focus:ring-primary placeholder-slate-500"
+          className="flex-1 px-4 py-2 rounded-lg bg-muted border border-border text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white placeholder-slate-400"
           disabled={isStreaming}
         />
         <button
           type="submit"
-          className="p-2.5 rounded-lg bg-primary hover:bg-primary/95 text-white transition disabled:opacity-50"
+          className="p-2.5 rounded-lg bg-primary hover:bg-[#6d4ae5] text-white transition shadow-sm shadow-primary/10 disabled:opacity-50"
           disabled={isStreaming || !inputText.trim()}
         >
           {isStreaming ? <Icons.Loader2 size={16} className="animate-spin" /> : <Icons.Send size={16} />}

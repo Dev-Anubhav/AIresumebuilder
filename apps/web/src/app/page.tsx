@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Sparkles, FileText, Zap, Shield, Star, ArrowRight, CheckCircle, ChevronRight, Users, Award } from 'lucide-react';
+import { Sparkles, FileText, Zap, Shield, Star, ArrowRight, CheckCircle, ChevronRight } from 'lucide-react';
 
 export const metadata = {
   title: 'ResuCraft AI — Build ATS-Friendly Resumes with AI',
@@ -13,25 +13,33 @@ const features = [
     icon: Sparkles,
     title: 'AI Resume Coach',
     desc: 'Get real-time suggestions powered by StepFun AI to rewrite summaries, improve bullet points, and add ATS keywords.',
-    accent: '#6366f1',
+    bg: '#f5f3ff',
+    border: '#ddd6fe',
+    text: '#7c5dfa',
   },
   {
     icon: FileText,
-    title: '8 Premium Templates',
-    desc: 'Choose from 8 professionally designed, ATS-tested templates — from minimalist to executive bold.',
-    accent: '#10b981',
+    title: '10 Premium Templates',
+    desc: 'Choose from 10 professionally designed, ATS-tested templates — from minimalist to executive bold.',
+    bg: '#f0fdf4',
+    border: '#bbf7d0',
+    text: '#16a34a',
   },
   {
     icon: Zap,
     title: 'Instant ATS Preview',
     desc: 'See exactly how your resume looks to applicant tracking systems. Live A4 preview updates as you type.',
-    accent: '#f59e0b',
+    bg: '#fffbeb',
+    border: '#fde68a',
+    text: '#d97706',
   },
   {
     icon: Shield,
     title: 'One-Click Export',
     desc: 'Export print-ready PDFs directly from your browser. No watermarks, no limits.',
-    accent: '#ec4899',
+    bg: '#fff1f2',
+    border: '#fecdd3',
+    text: '#e11d48',
   },
 ];
 
@@ -41,38 +49,39 @@ const testimonials = [
     role: 'Software Engineer at Razorpay',
     quote: 'ResuCraft AI helped me rewrite my resume in under 10 minutes. I got 3 interview calls within a week.',
     initials: 'PS',
-    color: '#6366f1',
+    bg: '#f5f3ff',
+    color: '#7c5dfa',
   },
   {
     name: 'Rahul Mehta',
     role: 'Product Manager at Swiggy',
     quote: 'The ATS optimization feature is a game-changer. My response rate went from 5% to 40% after using ResuCraft.',
     initials: 'RM',
-    color: '#10b981',
+    bg: '#f0fdf4',
+    color: '#16a34a',
   },
   {
     name: 'Ananya Singh',
     role: 'Data Scientist at Flipkart',
     quote: 'Clean, beautiful templates. The AI coach understood exactly what my industry needed. Highly recommend!',
     initials: 'AS',
-    color: '#ec4899',
+    bg: '#fff1f2',
+    color: '#e11d48',
   },
 ];
 
 const steps = [
-  { num: '01', title: 'Choose a Template', desc: 'Pick from 8 ATS-friendly designs that match your industry and style.' },
+  { num: '01', title: 'Choose a Template', desc: 'Pick from 10 ATS-friendly designs that match your industry and style.' },
   { num: '02', title: 'Fill in Your Details', desc: 'Add your experience, education, skills, and projects with guided forms.' },
   { num: '03', title: 'Ask the AI Coach', desc: 'Get instant suggestions to optimize your content for any job description.' },
   { num: '04', title: 'Export & Apply', desc: 'Download a pixel-perfect PDF resume and start applying with confidence.' },
 ];
 
-// ─── Page Component ──────────────────────────────────────────────────────────
 export default function LandingPage() {
   return (
     <div
-      className="min-h-screen text-slate-100"
+      className="min-h-screen text-slate-800 bg-[#faf8f6]"
       style={{
-        background: 'linear-gradient(135deg, #060b18 0%, #0b0f1e 50%, #0d1226 100%)',
         fontFamily: "'Inter', system-ui, sans-serif",
       }}
     >
@@ -88,87 +97,33 @@ export default function LandingPage() {
 
       {/* ── NAV ───────────────────────────────────────────────────────────── */}
       <nav
-        style={{
-          borderBottom: '1px solid rgba(99,102,241,0.12)',
-          background: 'rgba(10,14,28,0.7)',
-          backdropFilter: 'blur(16px)',
-          position: 'sticky',
-          top: 0,
-          zIndex: 50,
-        }}
+        className="border-b border-[#e2e8f0] bg-white/80 backdrop-blur-md sticky top-0 z-50"
       >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: '0 auto',
-            padding: '0 24px',
-            height: 64,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: 10,
-                background: 'linear-gradient(135deg, #6366f1, #818cf8)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 4px 16px rgba(99,102,241,0.4)',
-              }}
-            >
-              {/* Brand mark — stylised R */}
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-[#7c5dfa] flex items-center justify-center shadow-lg shadow-[#7c5dfa]/20">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M4 3h7a4 4 0 0 1 0 8H4V3Z" fill="white" opacity="0.9" />
                 <path d="M4 11h5.5l4.5 6H11L7 11.2V17H4v-6Z" fill="white" />
               </svg>
             </div>
-            <span
-              style={{
-                fontWeight: 800,
-                fontSize: 18,
-                letterSpacing: '-0.5px',
-                color: '#f1f5f9',
-              }}
-            >
-              ResuCraft <span style={{ color: '#818cf8' }}>AI</span>
+            <span className="font-extrabold text-lg tracking-tight text-slate-900">
+              ResuCraft <span className="text-[#7c5dfa]">AI</span>
             </span>
           </div>
 
           {/* Nav links */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div className="flex items-center gap-3">
             <Link
               href="/login"
-              style={{
-                padding: '8px 16px',
-                borderRadius: 8,
-                fontSize: 13,
-                fontWeight: 600,
-                color: '#94a3b8',
-                textDecoration: 'none',
-                transition: 'color 0.2s',
-              }}
+              className="px-4 py-2 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition"
             >
               Sign In
             </Link>
             <Link
               href="/signup"
-              style={{
-                padding: '9px 20px',
-                borderRadius: 8,
-                fontSize: 13,
-                fontWeight: 700,
-                color: '#fff',
-                textDecoration: 'none',
-                background: 'linear-gradient(135deg, #6366f1, #818cf8)',
-                boxShadow: '0 2px 12px rgba(99,102,241,0.35)',
-                transition: 'opacity 0.2s',
-              }}
+              className="px-5 py-2.5 rounded-lg text-xs font-bold text-white bg-[#7c5dfa] hover:bg-[#6d4ae5] shadow-md shadow-[#7c5dfa]/15 transition"
             >
               Get Started Free
             </Link>
@@ -177,188 +132,60 @@ export default function LandingPage() {
       </nav>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '100px 24px 80px',
-          textAlign: 'center',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Background glow orbs */}
-        <div
-          style={{
-            position: 'absolute',
-            top: -120,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 700,
-            height: 400,
-            background: 'radial-gradient(ellipse, rgba(99,102,241,0.14) 0%, transparent 70%)',
-            pointerEvents: 'none',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: '15%',
-            width: 300,
-            height: 300,
-            background: 'radial-gradient(ellipse, rgba(16,185,129,0.08) 0%, transparent 70%)',
-            pointerEvents: 'none',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            right: '10%',
-            width: 300,
-            height: 300,
-            background: 'radial-gradient(ellipse, rgba(236,72,153,0.08) 0%, transparent 70%)',
-            pointerEvents: 'none',
-          }}
-        />
+      <section className="py-20 px-6 text-center relative overflow-hidden">
+        {/* Subtle warm glow background */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#ffdcd2]/20 blur-[120px] pointer-events-none rounded-full" />
+        <div className="absolute bottom-0 left-[10%] w-[250px] h-[250px] bg-[#e0e7ff]/30 blur-[80px] pointer-events-none rounded-full" />
 
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 760, margin: '0 auto' }}>
+        <div className="relative z-10 max-w-3xl mx-auto space-y-6">
           {/* Badge */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              padding: '6px 14px',
-              borderRadius: 100,
-              border: '1px solid rgba(99,102,241,0.3)',
-              background: 'rgba(99,102,241,0.08)',
-              marginBottom: 32,
-            }}
-          >
-            <Star size={12} color="#818cf8" />
-            <span style={{ fontSize: 12, fontWeight: 600, color: '#818cf8' }}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#7c5dfa]/20 bg-[#7c5dfa]/5">
+            <Star size={12} className="text-[#7c5dfa]" fill="#7c5dfa" />
+            <span className="text-xs font-semibold text-[#7c5dfa]">
               AI-Powered Resume Builder — 100% Free to Start
             </span>
           </div>
 
           {/* Headline */}
-          <h1
-            style={{
-              fontSize: 'clamp(40px, 6vw, 72px)',
-              fontWeight: 900,
-              lineHeight: 1.1,
-              letterSpacing: '-2px',
-              color: '#f8fafc',
-              marginBottom: 24,
-            }}
-          >
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-slate-900 leading-[1.08]">
             Build Resumes That{' '}
-            <span
-              style={{
-                background: 'linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #ec4899 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
+            <span className="text-[#7c5dfa]">
               Actually Get Interviews
             </span>
           </h1>
 
           {/* Sub */}
-          <p
-            style={{
-              fontSize: 18,
-              color: '#94a3b8',
-              lineHeight: 1.7,
-              maxWidth: 560,
-              margin: '0 auto 40px',
-              fontWeight: 400,
-            }}
-          >
-            AI coaching + 8 premium ATS-optimized templates. Create, correct, and perfect your
+          <p className="text-base md:text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
+            AI coaching + 10 premium ATS-optimized templates. Create, correct, and perfect your
             resume in minutes — not hours.
           </p>
 
           {/* CTAs */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 12,
-              flexWrap: 'wrap',
-            }}
-          >
+          <div className="flex items-center justify-center gap-3 pt-4">
             <Link
               href="/signup"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '14px 28px',
-                borderRadius: 12,
-                fontSize: 15,
-                fontWeight: 700,
-                color: '#fff',
-                textDecoration: 'none',
-                background: 'linear-gradient(135deg, #6366f1, #818cf8)',
-                boxShadow: '0 4px 24px rgba(99,102,241,0.45)',
-                letterSpacing: '-0.2px',
-              }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white bg-[#7c5dfa] hover:bg-[#6d4ae5] shadow-lg shadow-[#7c5dfa]/25 text-sm transition"
             >
               Create My Resume Free
               <ArrowRight size={16} />
             </Link>
             <Link
               href="/login"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '14px 24px',
-                borderRadius: 12,
-                fontSize: 15,
-                fontWeight: 600,
-                color: '#94a3b8',
-                textDecoration: 'none',
-                border: '1px solid rgba(148,163,184,0.2)',
-                background: 'rgba(255,255,255,0.03)',
-              }}
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 text-sm transition"
             >
               Sign In
-              <ChevronRight size={15} />
             </Link>
           </div>
 
           {/* Social proof */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 20,
-              marginTop: 48,
-              flexWrap: 'wrap',
-            }}
-          >
+          <div className="flex items-center justify-center gap-5 pt-8 flex-wrap">
             {[
               { label: '10,000+ resumes created' },
-              { label: '8 premium templates' },
+              { label: '10 premium templates' },
               { label: 'ATS score improvement' },
             ].map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  fontSize: 12,
-                  color: '#64748b',
-                  fontWeight: 500,
-                }}
-              >
-                <CheckCircle size={13} color="#10b981" />
+              <div key={i} className="flex items-center gap-1.5 text-xs text-slate-500 font-semibold">
+                <CheckCircle size={14} className="text-emerald-500" />
                 {item.label}
               </div>
             ))}
@@ -367,67 +194,39 @@ export default function LandingPage() {
       </section>
 
       {/* ── FEATURES ──────────────────────────────────────────────────────── */}
-      <section style={{ padding: '80px 24px', maxWidth: 1200, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 56 }}>
-          <p style={{ fontSize: 12, fontWeight: 700, color: '#6366f1', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 12 }}>
+      <section className="py-16 px-6 max-w-6xl mx-auto space-y-12">
+        <div className="text-center space-y-3">
+          <p className="text-xs font-bold text-[#7c5dfa] tracking-wider uppercase">
             Features
           </p>
-          <h2
-            style={{
-              fontSize: 'clamp(28px, 4vw, 44px)',
-              fontWeight: 800,
-              color: '#f1f5f9',
-              letterSpacing: '-1px',
-              marginBottom: 14,
-            }}
-          >
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
             Everything you need to land the job
           </h2>
-          <p style={{ color: '#64748b', fontSize: 15, maxWidth: 480, margin: '0 auto' }}>
+          <p className="text-slate-500 text-sm max-w-md mx-auto">
             Professional tools that used to cost hundreds — now free, AI-powered, and effortless.
           </p>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: 20,
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {features.map((f, i) => {
             const Icon = f.icon;
             return (
               <div
                 key={i}
-                style={{
-                  padding: '28px 24px',
-                  borderRadius: 16,
-                  border: '1px solid rgba(148,163,184,0.08)',
-                  background: 'rgba(19,27,46,0.7)',
-                  backdropFilter: 'blur(8px)',
-                  transition: 'border-color 0.2s, transform 0.2s',
-                }}
+                className="p-7 rounded-2xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between"
               >
-                <div
-                  style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: 12,
-                    background: `${f.accent}18`,
-                    border: `1px solid ${f.accent}30`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: 16,
-                  }}
-                >
-                  <Icon size={20} color={f.accent} />
+                <div>
+                  <div
+                    className="width-11 h-11 w-11 rounded-xl flex items-center justify-center mb-5"
+                    style={{ background: f.bg, border: `1px solid ${f.border}` }}
+                  >
+                    <Icon size={20} style={{ color: f.text }} />
+                  </div>
+                  <h3 className="font-bold text-base text-slate-900 mb-2">
+                    {f.title}
+                  </h3>
+                  <p className="text-slate-500 text-xs leading-relaxed">{f.desc}</p>
                 </div>
-                <h3 style={{ fontWeight: 700, fontSize: 16, color: '#f1f5f9', marginBottom: 8 }}>
-                  {f.title}
-                </h3>
-                <p style={{ color: '#64748b', fontSize: 14, lineHeight: 1.6 }}>{f.desc}</p>
               </div>
             );
           })}
@@ -435,53 +234,25 @@ export default function LandingPage() {
       </section>
 
       {/* ── HOW IT WORKS ──────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '80px 24px',
-          background: 'rgba(15,20,35,0.6)',
-          borderTop: '1px solid rgba(99,102,241,0.08)',
-          borderBottom: '1px solid rgba(99,102,241,0.08)',
-        }}
-      >
-        <div style={{ maxWidth: 900, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <p style={{ fontSize: 12, fontWeight: 700, color: '#10b981', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 12 }}>
+      <section className="py-16 px-6 bg-white border-y border-slate-200">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <div className="text-center space-y-3">
+            <p className="text-xs font-bold text-emerald-600 tracking-wider uppercase">
               How it Works
             </p>
-            <h2
-              style={{
-                fontSize: 'clamp(28px, 4vw, 40px)',
-                fontWeight: 800,
-                color: '#f1f5f9',
-                letterSpacing: '-1px',
-              }}
-            >
+            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
               From blank page to interview-ready in 4 steps
             </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 28 }}>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {steps.map((step, i) => (
-              <div key={i} style={{ textAlign: 'center' }}>
-                <div
-                  style={{
-                    width: 52,
-                    height: 52,
-                    borderRadius: '50%',
-                    background: 'rgba(99,102,241,0.12)',
-                    border: '1.5px solid rgba(99,102,241,0.3)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 16px',
-                  }}
-                >
-                  <span style={{ fontSize: 13, fontWeight: 800, color: '#818cf8' }}>{step.num}</span>
+              <div key={i} className="text-center space-y-3">
+                <div className="w-12 h-12 rounded-full bg-[#7c5dfa]/10 border border-[#7c5dfa]/20 flex items-center justify-center mx-auto shadow-sm">
+                  <span className="text-sm font-extrabold text-[#7c5dfa]">{step.num}</span>
                 </div>
-                <h3 style={{ fontWeight: 700, fontSize: 15, color: '#e2e8f0', marginBottom: 8 }}>
-                  {step.title}
-                </h3>
-                <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.6 }}>{step.desc}</p>
+                <h3 className="font-bold text-sm text-slate-800">{step.title}</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -489,63 +260,42 @@ export default function LandingPage() {
       </section>
 
       {/* ── TESTIMONIALS ──────────────────────────────────────────────────── */}
-      <section style={{ padding: '80px 24px', maxWidth: 1100, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <p style={{ fontSize: 12, fontWeight: 700, color: '#ec4899', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 12 }}>
+      <section className="py-16 px-6 max-w-5xl mx-auto space-y-12">
+        <div className="text-center space-y-3">
+          <p className="text-xs font-bold text-rose-500 tracking-wider uppercase">
             Social Proof
           </p>
-          <h2
-            style={{
-              fontSize: 'clamp(24px, 3.5vw, 38px)',
-              fontWeight: 800,
-              color: '#f1f5f9',
-              letterSpacing: '-1px',
-            }}
-          >
+          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
             Loved by job seekers
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <div
               key={i}
-              style={{
-                padding: '24px',
-                borderRadius: 16,
-                border: '1px solid rgba(148,163,184,0.08)',
-                background: 'rgba(19,27,46,0.6)',
-              }}
+              className="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between"
             >
-              {/* Stars */}
-              <div style={{ display: 'flex', gap: 3, marginBottom: 14 }}>
-                {[...Array(5)].map((_, si) => (
-                  <Star key={si} size={13} fill="#f59e0b" color="#f59e0b" />
-                ))}
+              <div>
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(5)].map((_, si) => (
+                    <Star key={si} size={12} className="text-amber-400" fill="currentColor" />
+                  ))}
+                </div>
+                <p className="text-slate-600 text-xs italic leading-relaxed mb-6">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
               </div>
-              <p style={{ color: '#94a3b8', fontSize: 14, lineHeight: 1.65, marginBottom: 20, fontStyle: 'italic' }}>
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div className="flex items-center gap-3">
                 <div
-                  style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: '50%',
-                    background: t.color,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: 12,
-                    fontWeight: 700,
-                    color: '#fff',
-                  }}
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                  style={{ background: t.color }}
                 >
                   {t.initials}
                 </div>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0' }}>{t.name}</div>
-                  <div style={{ fontSize: 11, color: '#64748b' }}>{t.role}</div>
+                  <div className="text-xs font-bold text-slate-800">{t.name}</div>
+                  <div className="text-[10px] text-slate-500">{t.role}</div>
                 </div>
               </div>
             </div>
@@ -554,105 +304,37 @@ export default function LandingPage() {
       </section>
 
       {/* ── CTA BANNER ────────────────────────────────────────────────────── */}
-      <section style={{ padding: '80px 24px' }}>
-        <div
-          style={{
-            maxWidth: 800,
-            margin: '0 auto',
-            textAlign: 'center',
-            padding: '64px 40px',
-            borderRadius: 24,
-            background: 'linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.10) 100%)',
-            border: '1px solid rgba(99,102,241,0.25)',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Glow */}
-          <div
-            style={{
-              position: 'absolute',
-              top: -60,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: 400,
-              height: 200,
-              background: 'radial-gradient(ellipse, rgba(99,102,241,0.2) 0%, transparent 70%)',
-              pointerEvents: 'none',
-            }}
-          />
+      <section className="py-16 px-6">
+        <div className="max-w-4xl mx-auto text-center p-12 rounded-3xl bg-[#f5f3ff] border border-[#7c5dfa]/20 relative overflow-hidden shadow-sm">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[150px] bg-[#ffdcd2]/25 blur-[50px] pointer-events-none rounded-full" />
 
-          <div style={{ position: 'relative', zIndex: 1 }}>
-            <div
-              style={{
-                width: 56,
-                height: 56,
-                borderRadius: 14,
-                background: 'linear-gradient(135deg, #6366f1, #818cf8)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 24px',
-                boxShadow: '0 6px 24px rgba(99,102,241,0.4)',
-              }}
-            >
-              <svg width="26" height="26" viewBox="0 0 20 20" fill="none">
+          <div className="relative z-10 space-y-6">
+            <div className="w-14 h-14 rounded-2xl bg-[#7c5dfa] flex items-center justify-center mx-auto shadow-md shadow-[#7c5dfa]/20">
+              <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
                 <path d="M4 3h7a4 4 0 0 1 0 8H4V3Z" fill="white" opacity="0.9" />
                 <path d="M4 11h5.5l4.5 6H11L7 11.2V17H4v-6Z" fill="white" />
               </svg>
             </div>
 
-            <h2
-              style={{
-                fontSize: 'clamp(26px, 4vw, 40px)',
-                fontWeight: 800,
-                color: '#f8fafc',
-                letterSpacing: '-1px',
-                marginBottom: 14,
-              }}
-            >
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight">
               Ready to craft your perfect resume?
             </h2>
-            <p style={{ color: '#94a3b8', fontSize: 15, marginBottom: 36, lineHeight: 1.6 }}>
+            <p className="text-slate-500 text-sm max-w-lg mx-auto leading-relaxed">
               Join thousands of professionals who landed their dream jobs with ResuCraft AI.
               No credit card required.
             </p>
 
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div className="flex gap-3 justify-center flex-wrap pt-2">
               <Link
                 href="/signup"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '14px 32px',
-                  borderRadius: 12,
-                  fontSize: 15,
-                  fontWeight: 700,
-                  color: '#fff',
-                  textDecoration: 'none',
-                  background: 'linear-gradient(135deg, #6366f1, #818cf8)',
-                  boxShadow: '0 4px 20px rgba(99,102,241,0.45)',
-                }}
+                className="inline-flex items-center gap-2 px-7 py-3 rounded-xl font-bold text-white bg-[#7c5dfa] hover:bg-[#6d4ae5] shadow-md shadow-[#7c5dfa]/20 text-xs transition"
               >
                 Start Building Now
-                <ArrowRight size={16} />
+                <ArrowRight size={14} />
               </Link>
               <Link
                 href="/login"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '14px 24px',
-                  borderRadius: 12,
-                  fontSize: 15,
-                  fontWeight: 600,
-                  color: '#94a3b8',
-                  textDecoration: 'none',
-                  border: '1px solid rgba(148,163,184,0.2)',
-                  background: 'rgba(255,255,255,0.04)',
-                }}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 text-xs transition"
               >
                 Sign In
               </Link>
@@ -662,40 +344,24 @@ export default function LandingPage() {
       </section>
 
       {/* ── FOOTER ────────────────────────────────────────────────────────── */}
-      <footer
-        style={{
-          borderTop: '1px solid rgba(148,163,184,0.08)',
-          padding: '32px 24px',
-          textAlign: 'center',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 12 }}>
-          <div
-            style={{
-              width: 28,
-              height: 28,
-              borderRadius: 8,
-              background: 'linear-gradient(135deg, #6366f1, #818cf8)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
+      <footer className="border-t border-slate-200 py-10 text-center bg-white space-y-4">
+        <div className="flex items-center justify-center gap-2">
+          <div className="w-7 h-7 rounded-lg bg-[#7c5dfa] flex items-center justify-center">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
               <path d="M4 3h7a4 4 0 0 1 0 8H4V3Z" fill="white" opacity="0.9" />
               <path d="M4 11h5.5l4.5 6H11L7 11.2V17H4v-6Z" fill="white" />
             </svg>
           </div>
-          <span style={{ fontWeight: 700, fontSize: 14, color: '#94a3b8' }}>
-            ResuCraft <span style={{ color: '#6366f1' }}>AI</span>
+          <span className="font-extrabold text-sm text-slate-900">
+            ResuCraft <span className="text-[#7c5dfa]">AI</span>
           </span>
         </div>
-        <p style={{ fontSize: 12, color: '#475569' }}>
+        <p className="text-xs text-slate-500">
           © {new Date().getFullYear()} ResuCraft AI. Built with ♥ and StepFun AI.
         </p>
-        <div style={{ display: 'flex', gap: 20, justifyContent: 'center', marginTop: 12 }}>
+        <div className="flex gap-4 justify-center text-xs text-slate-400">
           {['Privacy Policy', 'Terms of Service', 'Contact'].map((item) => (
-            <span key={item} style={{ fontSize: 12, color: '#475569', cursor: 'pointer' }}>
+            <span key={item} className="hover:text-slate-600 cursor-pointer transition">
               {item}
             </span>
           ))}

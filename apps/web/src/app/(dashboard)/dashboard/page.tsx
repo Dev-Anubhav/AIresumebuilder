@@ -147,18 +147,18 @@ export default function DashboardPage() {
       {/* Welcome & Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100">Workspace Dashboard</h1>
-          <p className="text-xs text-slate-400">Manage and analyze your enterprise agreements and PDFs.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Workspace Dashboard</h1>
+          <p className="text-xs text-muted-foreground">Manage and analyze your enterprise agreements and PDFs.</p>
         </div>
 
         {/* Searching bar */}
         <div className="relative w-full md:w-72">
-          <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
+          <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={14} />
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search documents..."
-            className="w-full bg-[#131b2e] border border-slate-800 rounded-lg pl-9 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-primary"
+            className="w-full bg-card border border-border rounded-lg pl-9 pr-4 py-2 text-xs text-foreground placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white transition"
           />
         </div>
       </div>
@@ -169,12 +169,12 @@ export default function DashboardPage() {
       {/* ATS Resumes Section */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="font-bold text-slate-200 text-sm flex items-center gap-1.5">
+          <h3 className="font-bold text-foreground text-sm flex items-center gap-1.5">
             <Icons.Sparkles size={16} className="text-primary" /> ATS Resume Workspace ({resumes.length})
           </h3>
           <button
             onClick={handleCreateResume}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary/95 text-white font-semibold text-xs transition"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary hover:bg-[#6d4ae5] text-white font-semibold text-xs transition shadow-sm shadow-primary/15"
           >
             <Icons.Plus size={12} /> Create Resume
           </button>
@@ -182,18 +182,18 @@ export default function DashboardPage() {
 
         {loadingResumes ? (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="h-28 rounded-xl border border-slate-800 bg-[#131b2e] animate-pulse" />
+            <div className="h-28 rounded-xl border border-border bg-card animate-pulse" />
           </div>
         ) : resumes.length === 0 ? (
           <div
             onClick={handleCreateResume}
-            className="group cursor-pointer border border-dashed border-slate-800 hover:border-primary/50 rounded-xl bg-[#131b2e]/40 p-6 flex flex-col items-center justify-center text-center transition"
+            className="group cursor-pointer border border-dashed border-border hover:border-primary/50 rounded-xl bg-card/40 p-6 flex flex-col items-center justify-center text-center transition"
           >
-            <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center mb-3 text-slate-400 group-hover:scale-105 transition">
+            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center mb-3 text-muted-foreground group-hover:scale-105 transition">
               <Icons.Plus size={18} />
             </div>
-            <h4 className="text-xs font-semibold text-slate-300">Create your first ATS-friendly resume</h4>
-            <p className="text-[10px] text-slate-500 mt-0.5">Choose from 10 premium templates and correct errors live with AI.</p>
+            <h4 className="text-xs font-semibold text-foreground">Create your first ATS-friendly resume</h4>
+            <p className="text-[10px] text-muted-foreground mt-0.5">Choose from 10 premium templates and correct errors live with AI.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -201,19 +201,19 @@ export default function DashboardPage() {
               <div
                 key={resume.id}
                 onClick={() => router.push(`/resume/${resume.id}`)}
-                className="cursor-pointer group relative border border-slate-800 hover:border-primary/50 rounded-xl bg-[#131b2e] p-4 flex flex-col justify-between hover:shadow-lg transition h-28"
+                className="cursor-pointer group relative border border-border hover:border-primary/50 rounded-xl bg-card p-4 flex flex-col justify-between hover:shadow-md transition h-28"
               >
                 <div>
-                  <h4 className="text-xs font-bold text-slate-200 truncate group-hover:text-primary transition">
+                  <h4 className="text-xs font-bold text-foreground truncate group-hover:text-primary transition">
                     {resume.title}
                   </h4>
-                  <p className="text-[10px] text-slate-500 mt-1 capitalize">// Template: {resume.templateId}</p>
+                  <p className="text-[10px] text-muted-foreground mt-1 capitalize">// Template: {resume.templateId}</p>
                 </div>
-                <div className="flex justify-between items-center text-[9px] text-slate-500">
+                <div className="flex justify-between items-center text-[9px] text-muted-foreground">
                   <span>Updated {new Date(resume.updatedAt).toLocaleDateString()}</span>
                   <button
                     onClick={(e) => handleDeleteResume(resume.id, e)}
-                    className="p-1 hover:bg-slate-800 text-slate-500 hover:text-rose-500 rounded transition"
+                    className="p-1 hover:bg-muted text-muted-foreground hover:text-rose-500 rounded transition"
                   >
                     <Icons.Trash2 size={12} />
                   </button>
@@ -226,23 +226,23 @@ export default function DashboardPage() {
 
       {/* Documents Grid */}
       <div className="space-y-4">
-        <h3 className="font-bold text-slate-200 text-sm flex items-center gap-1.5">
+        <h3 className="font-bold text-foreground text-sm flex items-center gap-1.5">
           <Icons.FileText size={16} className="text-primary" /> Captured Documents ({filteredDocs.length})
         </h3>
 
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="h-44 rounded-xl border border-slate-800 bg-[#131b2e] animate-pulse" />
+              <div key={i} className="h-44 rounded-xl border border-border bg-card animate-pulse" />
             ))}
           </div>
         ) : filteredDocs.length === 0 ? (
-          <div className="text-center py-16 border border-slate-800 rounded-xl bg-[#131b2e] flex flex-col items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-4 text-slate-500">
+          <div className="text-center py-16 border border-border rounded-xl bg-card flex flex-col items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-4 text-muted-foreground">
               <Icons.FileText size={24} />
             </div>
-            <h4 className="text-sm font-semibold text-slate-300">No Documents Found</h4>
-            <p className="text-xs text-slate-500 mt-1">
+            <h4 className="text-sm font-semibold text-foreground">No Documents Found</h4>
+            <p className="text-xs text-muted-foreground mt-1">
               Upload your first PDF document to begin text extraction and semantic search.
             </p>
           </div>
@@ -267,32 +267,32 @@ export default function DashboardPage() {
 
       {/* Share Modal Dialog overlay */}
       {activeShareToken && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="w-full max-w-md bg-[#131b2e] border border-slate-800 rounded-xl p-6 shadow-2xl relative space-y-4">
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="w-full max-w-md bg-card border border-border rounded-xl p-6 shadow-xl relative space-y-4">
             <button
               onClick={() => setActiveShareToken(null)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
             >
               <Icons.X size={16} />
             </button>
-            <h4 className="font-bold text-slate-200 flex items-center gap-2">
+            <h4 className="font-bold text-foreground flex items-center gap-2">
               <Icons.Share2 size={18} className="text-primary" /> Share Document Link
             </h4>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Anyone with this link can view the PDF document and use the AI Chat Assistant without logging in.
             </p>
             <div className="flex gap-2">
               <input
                 readOnly
                 value={`${window.location.origin}/shared/${activeShareToken}`}
-                className="flex-1 bg-slate-900 border border-slate-800 text-[11px] p-2.5 rounded-lg text-slate-300"
+                className="flex-1 bg-muted border border-border text-[11px] p-2.5 rounded-lg text-foreground focus:outline-none"
               />
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(`${window.location.origin}/shared/${activeShareToken}`);
                   alert('Link copied to clipboard!');
                 }}
-                className="px-3.5 py-2 rounded-lg bg-primary text-white text-xs font-semibold hover:bg-primary/95 transition"
+                className="px-3.5 py-2 rounded-lg bg-primary text-white text-xs font-semibold hover:bg-[#6d4ae5] transition"
               >
                 Copy
               </button>

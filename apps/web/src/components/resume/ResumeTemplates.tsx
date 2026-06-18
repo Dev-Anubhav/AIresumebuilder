@@ -250,31 +250,31 @@ export function ResumePreview({ data, templateId }: ResumePreviewProps) {
   // 3. Tech/Developer (Clean Tech/Grid styling)
   if (templateId === 'tech') {
     return (
-      <div className="bg-slate-950 text-slate-100 p-8 shadow-md font-mono w-full max-w-[210mm] mx-auto min-h-[297mm]">
-        <div className="border-b border-emerald-500 pb-4 mb-6">
-          <h1 className="text-3xl font-bold text-emerald-400">&gt; {personalInfo.name || 'Your Name'}</h1>
-          <p className="text-slate-400 text-xs mt-1">// {personalInfo.title || 'Software Engineer'}</p>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-slate-400 mt-2">
-            <span>email: {personalInfo.email}</span>
-            <span>phone: {personalInfo.phone}</span>
-            <span>location: {personalInfo.location}</span>
-            {personalInfo.website && <span className="text-emerald-400">web: {personalInfo.website}</span>}
+      <div className="bg-[#f2faf6] text-[#064e3b] p-8 shadow-md font-mono w-full max-w-[210mm] mx-auto min-h-[297mm]">
+        <div className="border-b border-[#059669] pb-4 mb-6">
+          <h1 className="text-3xl font-bold text-[#059669]">&gt; {personalInfo.name || 'Your Name'}</h1>
+          <p className="text-[#047857] text-xs mt-1">// {personalInfo.title || 'Software Engineer'}</p>
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#34d399] mt-2">
+            <span className="text-[#065f46]">email: {personalInfo.email}</span>
+            <span className="text-[#065f46]">phone: {personalInfo.phone}</span>
+            <span className="text-[#065f46]">location: {personalInfo.location}</span>
+            {personalInfo.website && <span className="text-[#059669] underline">web: {personalInfo.website}</span>}
           </div>
         </div>
 
         {personalInfo.summary && (
           <div className="mb-6">
-            <h2 className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2"># summary</h2>
-            <p className="text-xs text-slate-300 leading-relaxed">{personalInfo.summary}</p>
+            <h2 className="text-xs font-bold text-[#059669] uppercase tracking-widest mb-2"># summary</h2>
+            <p className="text-xs text-[#065f46] leading-relaxed">{personalInfo.summary}</p>
           </div>
         )}
 
         {skills.length > 0 && (
           <div className="mb-6">
-            <h2 className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2"># technical-skills</h2>
+            <h2 className="text-xs font-bold text-[#059669] uppercase tracking-widest mb-2"># technical-skills</h2>
             <div className="flex flex-wrap gap-2">
               {skills.map((skill, idx) => (
-                <span key={idx} className="text-[11px] bg-slate-900 border border-emerald-800 text-emerald-300 px-2 py-0.5 rounded">
+                <span key={idx} className="text-[11px] bg-[#e6f4ea] border border-[#a7f3d0] text-[#047857] px-2 py-0.5 rounded">
                   {skill}
                 </span>
               ))}
@@ -284,14 +284,15 @@ export function ResumePreview({ data, templateId }: ResumePreviewProps) {
 
         {experience.length > 0 && (
           <div className="mb-6">
-            <h2 className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-3"># professional-experience</h2>
+            <h2 className="text-xs font-bold text-[#059669] uppercase tracking-widest mb-3"># professional-experience</h2>
             <div className="space-y-4">
               {experience.map((exp, idx) => (
                 <div key={idx} className="text-xs">
-                  <div className="flex justify-between font-bold text-slate-200">
+                  <div className="flex justify-between font-bold text-[#064e3b]">
                     <span>{exp.role} @ {exp.company}</span>
-                    <span className="text-slate-400 font-normal">[{exp.startDate} - {exp.current ? 'Present' : exp.endDate}]</span>
+                    <span className="text-[#047857] font-normal">[{exp.startDate} - {exp.current ? 'Present' : exp.endDate}]</span>
                   </div>
+                  {exp.location && <div className="text-[#059669] italic text-[10px] mt-0.5">// {exp.location}</div>}
                   <ul className="mt-1 space-y-1">{renderBullets(exp.description)}</ul>
                 </div>
               ))}
@@ -301,16 +302,16 @@ export function ResumePreview({ data, templateId }: ResumePreviewProps) {
 
         {projects.length > 0 && (
           <div className="mb-6">
-            <h2 className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-3"># build-portfolio</h2>
+            <h2 className="text-xs font-bold text-[#059669] uppercase tracking-widest mb-3"># build-portfolio</h2>
             <div className="space-y-3">
               {projects.map((proj, idx) => (
                 <div key={idx} className="text-xs">
-                  <div className="flex justify-between font-bold text-emerald-300">
+                  <div className="flex justify-between font-bold text-[#059669]">
                     <span>{proj.name}</span>
-                    {proj.link && <span className="underline text-slate-400">link</span>}
+                    {proj.link && <span className="underline text-[#047857]">link</span>}
                   </div>
-                  <div className="text-[10px] text-slate-400">tools: {proj.technologies}</div>
-                  <p className="text-slate-300 mt-1">{proj.description}</p>
+                  <div className="text-[10px] text-[#065f46]">tools: {proj.technologies}</div>
+                  <p className="text-[#064e3b] mt-1">{proj.description}</p>
                 </div>
               ))}
             </div>
@@ -319,15 +320,15 @@ export function ResumePreview({ data, templateId }: ResumePreviewProps) {
 
         {education.length > 0 && (
           <div>
-            <h2 className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2"># education</h2>
+            <h2 className="text-xs font-bold text-[#059669] uppercase tracking-widest mb-2"># education</h2>
             <div className="space-y-2">
               {education.map((edu, idx) => (
                 <div key={idx} className="text-xs">
-                  <div className="flex justify-between text-slate-200">
+                  <div className="flex justify-between text-[#064e3b] font-bold">
                     <span>{edu.degree} in {edu.fieldOfStudy}</span>
-                    <span className="text-slate-400">[{edu.startDate} - {edu.endDate}]</span>
+                    <span className="text-[#047857]">[{edu.startDate} - {edu.endDate}]</span>
                   </div>
-                  <p className="text-slate-400 text-[11px]">{edu.institution}</p>
+                  <p className="text-[#059669] text-[11px]">{edu.institution} {edu.gpa && `(GPA: ${edu.gpa})`}</p>
                 </div>
               ))}
             </div>

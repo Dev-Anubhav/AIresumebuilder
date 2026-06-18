@@ -72,22 +72,22 @@ export default function PDFViewer({ fileUrl, isReadOnly = false }: PDFViewerProp
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#0d1322] border border-slate-800 rounded-xl overflow-hidden relative">
+    <div className="flex flex-col h-full bg-[#f5f3f0] border border-border rounded-xl overflow-hidden relative">
       {/* Viewer Toolbar */}
-      <div className="flex items-center justify-between p-3 border-b border-slate-800 bg-[#131b2e] sticky top-0 z-10">
+      <div className="flex items-center justify-between p-3 border-b border-border bg-card sticky top-0 z-10">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition"
+            className="p-1.5 rounded-lg bg-muted hover:bg-slate-200/50 text-foreground border border-border transition"
           >
             <Icons.ChevronLeft size={16} />
           </button>
-          <span className="text-sm text-slate-300">
+          <span className="text-sm text-foreground">
             Page {currentPage} of {totalPages}
           </span>
           <button
             onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition"
+            className="p-1.5 rounded-lg bg-muted hover:bg-slate-200/50 text-foreground border border-border transition"
           >
             <Icons.ChevronRight size={16} />
           </button>
@@ -95,7 +95,7 @@ export default function PDFViewer({ fileUrl, isReadOnly = false }: PDFViewerProp
 
         {/* Pulse highlight alert banner */}
         {highlightedPage === currentPage && (
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs animate-pulse">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded bg-sky-500/10 text-sky-600 border border-sky-500/20 text-xs animate-pulse">
             <Icons.Sparkles size={12} /> Jumped to citation
           </div>
         )}
@@ -103,14 +103,14 @@ export default function PDFViewer({ fileUrl, isReadOnly = false }: PDFViewerProp
         <div className="flex items-center gap-2">
           <button
             onClick={() => useUIStore.getState().setZoomScale(Math.max(0.5, zoomScale - 0.1))}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition"
+            className="p-1.5 rounded-lg bg-muted hover:bg-slate-200/50 text-foreground border border-border transition"
           >
             <Icons.ZoomOut size={16} />
           </button>
-          <span className="text-xs text-slate-400">{Math.round(zoomScale * 100)}%</span>
+          <span className="text-xs text-muted-foreground">{Math.round(zoomScale * 100)}%</span>
           <button
             onClick={() => useUIStore.getState().setZoomScale(Math.min(2, zoomScale + 0.1))}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition"
+            className="p-1.5 rounded-lg bg-muted hover:bg-slate-200/50 text-foreground border border-border transition"
           >
             <Icons.ZoomIn size={16} />
           </button>
@@ -191,7 +191,7 @@ export default function PDFViewer({ fileUrl, isReadOnly = false }: PDFViewerProp
               {/* New annotation prompt portal */}
               {clickAnnotationPos && (
                 <div
-                  className="absolute bg-slate-950/95 border border-slate-800 p-3 rounded-lg shadow-2xl z-30 flex flex-col gap-2"
+                  className="absolute bg-card border border-border p-3 rounded-lg shadow-lg z-30 flex flex-col gap-2"
                   style={{
                     left: `${clickAnnotationPos.x}%`,
                     top: `${clickAnnotationPos.y}%`,
@@ -201,18 +201,18 @@ export default function PDFViewer({ fileUrl, isReadOnly = false }: PDFViewerProp
                     value={noteText}
                     onChange={(e) => setNoteText(e.target.value)}
                     placeholder="Enter annotation note..."
-                    className="text-xs p-1.5 rounded bg-slate-900 border border-slate-800 text-white resize-none w-48 h-16 focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="text-xs p-1.5 rounded bg-muted border border-border text-foreground resize-none w-48 h-16 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white"
                   />
                   <div className="flex justify-end gap-1">
                     <button
                       onClick={() => setClickAnnotationPos(null)}
-                      className="px-2 py-1 bg-slate-800 text-slate-300 text-[10px] rounded hover:bg-slate-700"
+                      className="px-2 py-1 bg-muted text-muted-foreground text-[10px] rounded hover:bg-slate-200/50 border border-border"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={submitAnnotation}
-                      className="px-2 py-1 bg-primary text-white text-[10px] rounded hover:bg-primary/95"
+                      className="px-2 py-1 bg-primary text-white text-[10px] rounded hover:bg-[#6d4ae5] shadow-sm"
                     >
                       Save
                     </button>

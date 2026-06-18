@@ -52,7 +52,7 @@ export default function UploadDropzone({ onUpload, isUploading }: UploadDropzone
       className={`border-2 border-dashed rounded-xl p-8 text-center flex flex-col items-center justify-center cursor-pointer transition ${
         isDragActive
           ? 'border-primary bg-primary/5'
-          : 'border-slate-800 bg-[#131b2e] hover:bg-slate-800/40 hover:border-slate-700'
+          : 'border-border bg-card hover:bg-muted/40 hover:border-primary/45'
       }`}
       onClick={() => inputRef.current?.click()}
     >
@@ -67,13 +67,13 @@ export default function UploadDropzone({ onUpload, isUploading }: UploadDropzone
       <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary">
         <Icons.UploadCloud size={24} />
       </div>
-      <h3 className="font-semibold text-slate-200 mb-1 text-sm">Upload PDF document</h3>
-      <p className="text-xs text-slate-400 max-w-xs leading-relaxed mb-4">
+      <h3 className="font-semibold text-foreground mb-1 text-sm">Upload PDF document</h3>
+      <p className="text-xs text-muted-foreground max-w-xs leading-relaxed mb-4">
         Drag & drop contract, invoice or financial report here. Max file size: 20MB.
       </p>
       <button
         type="button"
-        className="px-4 py-2 rounded-lg bg-primary hover:bg-primary/95 text-white text-xs font-semibold transition flex items-center gap-1.5"
+        className="px-4 py-2 rounded-lg bg-primary hover:bg-[#6d4ae5] text-white text-xs font-semibold shadow-sm shadow-primary/10 transition flex items-center gap-1.5"
         disabled={isUploading}
       >
         {isUploading ? <Icons.Loader2 size={12} className="animate-spin" /> : <Icons.Plus size={12} />}

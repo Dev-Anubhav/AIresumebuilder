@@ -30,10 +30,10 @@ const TEMPLATES = [
   {
     id: 'tech',
     name: 'Tech / Developer',
-    accent: '#10b981',
+    accent: '#059669',
     secondary: '#064e3b',
-    bg: '#030712',
-    description: 'Dark terminal aesthetic. Stands out in software engineering stacks.',
+    bg: '#f2faf6',
+    description: 'Light developer aesthetic. Clean monospace structure.',
     category: 'Tech',
     preview: 'tech',
   },
@@ -179,32 +179,32 @@ function TemplatePickerModal({
   const filtered = activeCategory === 'All' ? TEMPLATES : TEMPLATES.filter((t) => t.category === activeCategory);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4" onClick={onClose}>
       <div
-        className="w-full max-w-4xl bg-[#0e1523] border border-slate-800 rounded-2xl overflow-hidden shadow-2xl"
+        className="w-full max-w-4xl bg-card border border-border rounded-2xl overflow-hidden shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
           <div>
-            <h2 className="text-base font-bold text-slate-100">Choose a Template</h2>
-            <p className="text-xs text-slate-400 mt-0.5">All templates are ATS-optimized and print-ready</p>
+            <h2 className="text-base font-bold text-foreground">Choose a Template</h2>
+            <p className="text-xs text-muted-foreground mt-0.5">All templates are ATS-optimized and print-ready</p>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition">
+          <button onClick={onClose} className="p-2 hover:bg-muted rounded-lg text-muted-foreground hover:text-foreground transition">
             <Icons.X size={18} />
           </button>
         </div>
 
         {/* Category filter */}
-        <div className="flex gap-2 px-6 py-3 border-b border-slate-800 overflow-x-auto scrollbar-none">
+        <div className="flex gap-2 px-6 py-3 border-b border-border overflow-x-auto scrollbar-none bg-[#fbfaf8]">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold transition whitespace-nowrap ${
                 activeCategory === cat
-                  ? 'bg-primary text-white'
-                  : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+                  ? 'bg-primary text-white shadow-sm shadow-primary/10'
+                  : 'bg-muted text-muted-foreground hover:text-foreground border border-border'
               }`}
             >
               {cat}
@@ -218,24 +218,24 @@ function TemplatePickerModal({
             <button
               key={tmpl.id}
               onClick={() => setSelected(tmpl.id)}
-              className={`group text-left rounded-xl p-2 transition ${
+              className={`group text-left rounded-xl p-2 border border-transparent transition ${
                 selected === tmpl.id
-                  ? 'ring-2 ring-primary bg-slate-800/60'
-                  : 'hover:bg-slate-800/40'
+                  ? 'ring-2 ring-primary bg-muted/60'
+                  : 'hover:bg-muted/40'
               }`}
             >
               <TemplateThumbnail template={tmpl} />
               <div className="mt-2 px-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-slate-200">{tmpl.name}</span>
+                  <span className="text-xs font-semibold text-foreground">{tmpl.name}</span>
                   {selected === tmpl.id && (
                     <span className="text-[9px] bg-primary text-white px-1.5 py-0.5 rounded font-bold">Active</span>
                   )}
                 </div>
-                <span className="text-[10px] text-slate-500 mt-0.5 block leading-snug">{tmpl.description}</span>
+                <span className="text-[10px] text-muted-foreground mt-0.5 block leading-snug">{tmpl.description}</span>
                 <span
                   className="text-[9px] font-bold mt-1.5 inline-block px-1.5 py-0.5 rounded"
-                  style={{ background: tmpl.accent + '25', color: tmpl.accent === '#030712' ? '#10b981' : tmpl.accent }}
+                  style={{ background: tmpl.accent + '25', color: tmpl.accent === '#030712' ? '#16a34a' : tmpl.accent }}
                 >
                   {tmpl.category}
                 </span>
@@ -245,8 +245,8 @@ function TemplatePickerModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-800 bg-[#0b0f19]">
-          <button onClick={onClose} className="px-4 py-2 text-xs text-slate-400 hover:text-white transition">
+        <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-border bg-[#fbfaf8]">
+          <button onClick={onClose} className="px-4 py-2 text-xs text-muted-foreground hover:text-foreground transition">
             Cancel
           </button>
           <button
@@ -254,7 +254,7 @@ function TemplatePickerModal({
               onSelect(selected);
               onClose();
             }}
-            className="px-5 py-2 bg-primary hover:bg-primary/90 text-white font-semibold text-xs rounded-lg transition"
+            className="px-5 py-2 bg-primary hover:bg-[#6d4ae5] text-white font-semibold text-xs rounded-lg shadow-sm shadow-primary/10 transition"
           >
             Apply Template
           </button>
@@ -454,14 +454,14 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
   }
 
   return (
-    <div className="flex flex-col flex-1 overflow-hidden">
+    <div className="flex flex-col flex-1 overflow-hidden bg-background">
 
       {/* ── TOP HEADER BAR ─────────────────────────────────────────────── */}
-      <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-slate-800 bg-[#0b0f19] shrink-0 z-10">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-border bg-card shrink-0 z-10">
         <div className="flex items-center gap-3 min-w-0">
           <button
             onClick={() => router.push('/dashboard')}
-            className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition shrink-0"
+            className="p-2 hover:bg-muted rounded-lg text-muted-foreground hover:text-foreground border border-border transition shrink-0"
           >
             <Icons.ChevronLeft size={16} />
           </button>
@@ -469,39 +469,26 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
             <input
               value={title}
               onChange={(e) => { setTitle(e.target.value); handleSave(resumeData, templateId, e.target.value); }}
-              className="bg-transparent text-base font-bold text-slate-100 focus:outline-none w-52 sm:w-72 truncate"
+              className="bg-transparent text-base font-bold text-foreground focus:outline-none w-52 sm:w-72 truncate"
             />
-            <div className="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5">
+            <div className="text-[10px] text-muted-foreground flex items-center gap-1 mt-0.5">
               {saving ? (
                 <><Icons.Loader2 className="animate-spin text-primary" size={10} /> Saving...</>
               ) : (
-                <><span className="text-emerald-500">✓</span> Saved</>
+                <><span className="text-emerald-500 font-bold">✓</span> Saved</>
               )}
             </div>
           </div>
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
-          {/* Template button */}
-          <button
-            onClick={() => setShowTemplatePicker(true)}
-            className="flex items-center gap-2 px-3 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-xs text-slate-200 transition"
-          >
-            <div
-              className="w-3 h-3 rounded-sm"
-              style={{ background: currentTemplate.accent }}
-            />
-            <span className="hidden sm:inline">{currentTemplate.name}</span>
-            <Icons.ChevronRight size={12} className="rotate-90 text-slate-400" />
-          </button>
-
           {/* Panel toggles */}
-          <div className="flex items-center gap-1 bg-slate-800 border border-slate-700 rounded-lg p-0.5">
+          <div className="flex items-center gap-1 bg-muted border border-border rounded-lg p-0.5">
             <button
               onClick={() => setIsLeftPanelOpen((o) => !o)}
               title="Toggle Form Editor"
               className={`p-1.5 rounded transition-all duration-200 ${
-                isLeftPanelOpen ? 'bg-primary text-white' : 'text-slate-400 hover:bg-slate-700 hover:text-white'
+                isLeftPanelOpen ? 'bg-primary text-white shadow-sm' : 'text-muted-foreground hover:bg-slate-200/50 hover:text-foreground'
               }`}
             >
               <Icons.List size={13} />
@@ -510,27 +497,40 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
               onClick={() => setIsRightPanelOpen((o) => !o)}
               title="Toggle AI Coach"
               className={`p-1.5 rounded transition-all duration-200 ${
-                isRightPanelOpen ? 'bg-primary text-white' : 'text-slate-400 hover:bg-slate-700 hover:text-white'
+                isRightPanelOpen ? 'bg-primary text-white shadow-sm' : 'text-muted-foreground hover:bg-slate-200/50 hover:text-foreground'
               }`}
             >
               <Icons.MessageSquare size={13} />
             </button>
           </div>
 
+          {/* Template button */}
+          <button
+            onClick={() => setShowTemplatePicker(true)}
+            className="flex items-center gap-2 px-3 py-2 bg-muted hover:bg-slate-200/50 border border-border rounded-lg text-xs text-foreground transition"
+          >
+            <div
+              className="w-3 h-3 rounded-sm"
+              style={{ background: currentTemplate.accent }}
+            />
+            <span className="hidden sm:inline">{currentTemplate.name}</span>
+            <Icons.ChevronRight size={12} className="rotate-95 text-muted-foreground" />
+          </button>
+
           {/* Zoom controls */}
-          <div className="hidden sm:flex items-center gap-1 bg-slate-800 border border-slate-700 rounded-lg px-2 py-1">
-            <button onClick={() => setPreviewZoom((z) => Math.max(0.4, z - 0.1))} className="p-1 text-slate-400 hover:text-white transition">
+          <div className="hidden sm:flex items-center gap-1 bg-muted border border-border rounded-lg px-2 py-1">
+            <button onClick={() => setPreviewZoom((z) => Math.max(0.4, z - 0.1))} className="p-1 text-muted-foreground hover:text-foreground transition">
               <Icons.ZoomOut size={13} />
             </button>
-            <span className="text-[10px] text-slate-400 w-9 text-center">{Math.round(previewZoom * 100)}%</span>
-            <button onClick={() => setPreviewZoom((z) => Math.min(1.2, z + 0.1))} className="p-1 text-slate-400 hover:text-white transition">
+            <span className="text-[10px] text-muted-foreground w-9 text-center">{Math.round(previewZoom * 100)}%</span>
+            <button onClick={() => setPreviewZoom((z) => Math.min(1.2, z + 0.1))} className="p-1 text-muted-foreground hover:text-foreground transition">
               <Icons.ZoomIn size={13} />
             </button>
           </div>
 
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold text-xs transition shadow-lg shadow-primary/20"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-[#6d4ae5] text-white font-semibold text-xs transition shadow-md shadow-primary/10"
           >
             <Icons.Download size={13} /> Export PDF
           </button>
@@ -538,22 +538,22 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
       </div>
 
       {/* ── MAIN THREE-COLUMN LAYOUT ────────────────────────────────────── */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden animate-fade-in">
 
         {/* LEFT — Form editor */}
-        <div className={`transition-all duration-300 ease-in-out border-r border-slate-800 bg-[#0d1322] flex flex-col overflow-hidden ${
+        <div className={`transition-all duration-300 ease-in-out border-r border-border bg-card flex flex-col overflow-hidden ${
           isLeftPanelOpen ? 'w-80 opacity-100 shrink-0' : 'w-0 opacity-0 pointer-events-none border-r-0'
         }`}>
           {/* Tabs */}
-          <div className="flex border-b border-slate-800 shrink-0 overflow-x-auto scrollbar-none">
+          <div className="flex border-b border-border shrink-0 overflow-x-auto scrollbar-none bg-[#fbfaf8]">
             {(['info', 'experience', 'education', 'skills', 'projects'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`flex-1 min-w-[56px] text-center py-3 text-[10px] font-bold uppercase tracking-wider transition border-b-2 ${
                   activeTab === tab
-                    ? 'border-primary text-primary bg-slate-900/50'
-                    : 'border-transparent text-slate-500 hover:text-slate-300'
+                    ? 'border-primary text-primary bg-muted/30'
+                    : 'border-transparent text-muted-foreground hover:text-foreground'
                 }`}
               >
                 {tab}
@@ -566,7 +566,7 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
             {/* ── INFO ── */}
             {activeTab === 'info' && (
               <div className="space-y-3 text-xs">
-                <p className="text-slate-500 text-[10px] pb-1">Fill in your personal details. These appear at the top of your resume.</p>
+                <p className="text-muted-foreground text-[10px] pb-1">Fill in your personal details. These appear at the top of your resume.</p>
                 {[
                   { label: 'Full Name', field: 'name' as const, placeholder: 'Jane Doe' },
                   { label: 'Job Title', field: 'title' as const, placeholder: 'Senior Product Manager' },
@@ -576,23 +576,23 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
                   { label: 'Website / LinkedIn', field: 'website' as const, placeholder: 'linkedin.com/in/jane' },
                 ].map(({ label, field, placeholder }) => (
                   <div key={field} className="space-y-1">
-                    <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">{label}</label>
+                    <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{label}</label>
                     <input
                       value={resumeData.personalInfo[field]}
                       onChange={(e) => updatePersonalInfo(field, e.target.value)}
                       placeholder={placeholder}
-                      className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-primary transition"
+                      className="w-full bg-muted border border-border rounded-lg px-3 py-2 text-xs text-foreground placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white transition"
                     />
                   </div>
                 ))}
                 <div className="space-y-1">
-                  <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Professional Summary</label>
+                  <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Professional Summary</label>
                   <textarea
                     rows={4}
                     value={resumeData.personalInfo.summary}
                     onChange={(e) => updatePersonalInfo('summary', e.target.value)}
                     placeholder="Results-driven professional with 5+ years of experience..."
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-primary transition resize-none"
+                    className="w-full bg-muted border border-border rounded-lg px-3 py-2 text-xs text-foreground placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white transition resize-none"
                   />
                 </div>
               </div>
@@ -603,64 +603,64 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
               <div className="space-y-3">
                 <button
                   onClick={addExperience}
-                  className="w-full py-2.5 border border-dashed border-slate-700 rounded-lg text-slate-400 hover:text-white hover:border-primary/50 flex items-center justify-center gap-1.5 text-xs transition"
+                  className="w-full py-2.5 border border-dashed border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-primary/50 bg-card flex items-center justify-center gap-1.5 text-xs transition"
                 >
                   <Icons.Plus size={13} /> Add Work Experience
                 </button>
                 {resumeData.experience.map((exp, idx) => (
-                  <div key={idx} className="bg-slate-900/70 border border-slate-800 rounded-lg p-3 space-y-2.5 relative text-xs">
-                    <button onClick={() => removeExperience(idx)} className="absolute top-3 right-3 text-slate-600 hover:text-rose-500 transition">
+                  <div key={idx} className="bg-muted/40 border border-border rounded-lg p-3 space-y-2.5 relative text-xs">
+                    <button onClick={() => removeExperience(idx)} className="absolute top-3 right-3 text-muted-foreground hover:text-rose-600 transition">
                       <Icons.Trash2 size={13} />
                     </button>
-                    <div className="font-semibold text-slate-300 text-[10px] uppercase tracking-wide">Position {idx + 1}</div>
+                    <div className="font-semibold text-muted-foreground text-[10px] uppercase tracking-wide">Position {idx + 1}</div>
                     {[
                       { label: 'Company', field: 'company', placeholder: 'Stripe' },
                       { label: 'Role', field: 'role', placeholder: 'Senior Engineer' },
                       { label: 'Location', field: 'location', placeholder: 'San Francisco, CA' },
                     ].map(({ label, field, placeholder }) => (
                       <div key={field}>
-                        <label className="text-[9px] text-slate-500 font-semibold uppercase">{label}</label>
+                        <label className="text-[9px] text-muted-foreground font-semibold uppercase">{label}</label>
                         <input
                           value={(exp as any)[field]}
                           onChange={(e) => updateExperience(idx, field, e.target.value)}
                           placeholder={placeholder}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-md px-2.5 py-1.5 text-xs text-slate-200 mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary"
+                          className="w-full bg-muted border border-border rounded-md px-2.5 py-1.5 text-xs text-foreground mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white"
                         />
                       </div>
                     ))}
                     <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <label className="text-[9px] text-slate-500 font-semibold uppercase">Start</label>
+                        <label className="text-[9px] text-muted-foreground font-semibold uppercase">Start</label>
                         <input
                           value={exp.startDate}
                           onChange={(e) => updateExperience(idx, 'startDate', e.target.value)}
                           placeholder="Jan 2022"
-                          className="w-full bg-slate-950 border border-slate-800 rounded-md px-2.5 py-1.5 text-xs text-slate-200 mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary"
+                          className="w-full bg-muted border border-border rounded-md px-2.5 py-1.5 text-xs text-foreground mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white"
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] text-slate-500 font-semibold uppercase">End</label>
+                        <label className="text-[9px] text-muted-foreground font-semibold uppercase">End</label>
                         <input
                           disabled={exp.current}
                           value={exp.endDate}
                           onChange={(e) => updateExperience(idx, 'endDate', e.target.value)}
                           placeholder="Present"
-                          className="w-full bg-slate-950 border border-slate-800 rounded-md px-2.5 py-1.5 text-xs text-slate-200 mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-30"
+                          className="w-full bg-muted border border-border rounded-md px-2.5 py-1.5 text-xs text-foreground mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white disabled:opacity-30"
                         />
                       </div>
                     </div>
-                    <label className="flex items-center gap-2 text-[10px] text-slate-400 cursor-pointer">
+                    <label className="flex items-center gap-2 text-[10px] text-muted-foreground cursor-pointer">
                       <input type="checkbox" checked={exp.current} onChange={(e) => updateExperience(idx, 'current', e.target.checked)} className="rounded" />
                       Currently working here
                     </label>
                     <div>
-                      <label className="text-[9px] text-slate-500 font-semibold uppercase">Achievements (one per line, start with –)</label>
+                      <label className="text-[9px] text-muted-foreground font-semibold uppercase">Achievements (one per line, start with –)</label>
                       <textarea
                         rows={3}
                         value={exp.description}
                         onChange={(e) => updateExperience(idx, 'description', e.target.value)}
                         placeholder="– Led team of 8 engineers to ship product ahead of schedule&#10;– Reduced API latency by 40%"
-                        className="w-full bg-slate-950 border border-slate-800 rounded-md px-2.5 py-1.5 text-xs text-slate-200 mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+                        className="w-full bg-muted border border-border rounded-md px-2.5 py-1.5 text-xs text-foreground mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white resize-none"
                       />
                     </div>
                   </div>
@@ -673,16 +673,16 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
               <div className="space-y-3">
                 <button
                   onClick={addEducation}
-                  className="w-full py-2.5 border border-dashed border-slate-700 rounded-lg text-slate-400 hover:text-white hover:border-primary/50 flex items-center justify-center gap-1.5 text-xs transition"
+                  className="w-full py-2.5 border border-dashed border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-primary/50 bg-card flex items-center justify-center gap-1.5 text-xs transition"
                 >
                   <Icons.Plus size={13} /> Add Education
                 </button>
                 {resumeData.education.map((edu, idx) => (
-                  <div key={idx} className="bg-slate-900/70 border border-slate-800 rounded-lg p-3 space-y-2.5 relative text-xs">
-                    <button onClick={() => removeEducation(idx)} className="absolute top-3 right-3 text-slate-600 hover:text-rose-500 transition">
+                  <div key={idx} className="bg-muted/40 border border-border rounded-lg p-3 space-y-2.5 relative text-xs">
+                    <button onClick={() => removeEducation(idx)} className="absolute top-3 right-3 text-muted-foreground hover:text-rose-600 transition">
                       <Icons.Trash2 size={13} />
                     </button>
-                    <div className="font-semibold text-slate-300 text-[10px] uppercase tracking-wide">Entry {idx + 1}</div>
+                    <div className="font-semibold text-muted-foreground text-[10px] uppercase tracking-wide">Entry {idx + 1}</div>
                     {[
                       { label: 'Institution', field: 'institution', placeholder: 'MIT' },
                       { label: 'Degree', field: 'degree', placeholder: 'Bachelor of Science' },
@@ -690,12 +690,12 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
                       { label: 'Location', field: 'location', placeholder: 'Cambridge, MA' },
                     ].map(({ label, field, placeholder }) => (
                       <div key={field}>
-                        <label className="text-[9px] text-slate-500 font-semibold uppercase">{label}</label>
+                        <label className="text-[9px] text-muted-foreground font-semibold uppercase">{label}</label>
                         <input
                           value={(edu as any)[field]}
                           onChange={(e) => updateEducation(idx, field, e.target.value)}
                           placeholder={placeholder}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-md px-2.5 py-1.5 text-xs text-slate-200 mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary"
+                          className="w-full bg-muted border border-border rounded-md px-2.5 py-1.5 text-xs text-foreground mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white"
                         />
                       </div>
                     ))}
@@ -706,12 +706,12 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
                         { label: 'GPA', field: 'gpa', placeholder: '3.9' },
                       ].map(({ label, field, placeholder }) => (
                         <div key={field}>
-                          <label className="text-[9px] text-slate-500 font-semibold uppercase">{label}</label>
+                          <label className="text-[9px] text-muted-foreground font-semibold uppercase">{label}</label>
                           <input
                             value={(edu as any)[field]}
                             onChange={(e) => updateEducation(idx, field, e.target.value)}
                             placeholder={placeholder}
-                            className="w-full bg-slate-950 border border-slate-800 rounded-md px-2.5 py-1.5 text-xs text-slate-200 mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary"
+                            className="w-full bg-muted border border-border rounded-md px-2.5 py-1.5 text-xs text-foreground mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white"
                           />
                         </div>
                       ))}
@@ -725,7 +725,7 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
             {activeTab === 'skills' && (
               <div className="space-y-3 text-xs">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Add a Skill</label>
+                  <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Add a Skill</label>
                   <input
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
@@ -734,18 +734,18 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
                       }
                     }}
                     placeholder="Type and press Enter (e.g. React, Python, SQL)"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="w-full bg-muted border border-border rounded-lg px-3 py-2 text-xs text-foreground placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white"
                   />
-                  <p className="text-[9px] text-slate-600">Press Enter to add each skill separately</p>
+                  <p className="text-[9px] text-muted-foreground/85">Press Enter to add each skill separately</p>
                 </div>
                 {resumeData.skills.length > 0 && (
                   <div>
-                    <div className="text-[10px] text-slate-500 mb-2 font-semibold uppercase">Your Skills ({resumeData.skills.length})</div>
+                    <div className="text-[10px] text-muted-foreground mb-2 font-semibold uppercase">Your Skills ({resumeData.skills.length})</div>
                     <div className="flex flex-wrap gap-2">
                       {resumeData.skills.map((skill, i) => (
                         <span key={i} className="flex items-center gap-1 pl-3 pr-1.5 py-1 bg-primary/10 border border-primary/20 text-primary rounded-full text-[10px] font-semibold">
                           {skill}
-                          <button onClick={() => removeSkill(skill)} className="ml-0.5 w-4 h-4 flex items-center justify-center rounded-full bg-primary/20 hover:bg-rose-500/20 hover:text-rose-400 transition">
+                          <button onClick={() => removeSkill(skill)} className="ml-0.5 w-4 h-4 flex items-center justify-center rounded-full bg-primary/20 hover:bg-rose-100 hover:text-rose-600 transition">
                             <Icons.X size={8} />
                           </button>
                         </span>
@@ -761,39 +761,39 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
               <div className="space-y-3">
                 <button
                   onClick={addProject}
-                  className="w-full py-2.5 border border-dashed border-slate-700 rounded-lg text-slate-400 hover:text-white hover:border-primary/50 flex items-center justify-center gap-1.5 text-xs transition"
+                  className="w-full py-2.5 border border-dashed border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-primary/50 bg-card flex items-center justify-center gap-1.5 text-xs transition"
                 >
                   <Icons.Plus size={13} /> Add Project
                 </button>
                 {resumeData.projects.map((proj, idx) => (
-                  <div key={idx} className="bg-slate-900/70 border border-slate-800 rounded-lg p-3 space-y-2.5 relative text-xs">
-                    <button onClick={() => removeProject(idx)} className="absolute top-3 right-3 text-slate-600 hover:text-rose-500 transition">
+                  <div key={idx} className="bg-muted/40 border border-border rounded-lg p-3 space-y-2.5 relative text-xs">
+                    <button onClick={() => removeProject(idx)} className="absolute top-3 right-3 text-muted-foreground hover:text-rose-600 transition">
                       <Icons.Trash2 size={13} />
                     </button>
-                    <div className="font-semibold text-slate-300 text-[10px] uppercase tracking-wide">Project {idx + 1}</div>
+                    <div className="font-semibold text-muted-foreground text-[10px] uppercase tracking-wide">Project {idx + 1}</div>
                     {[
                       { label: 'Project Name', field: 'name', placeholder: 'AI Document Platform' },
                       { label: 'Link / URL', field: 'link', placeholder: 'github.com/yourname/project' },
                       { label: 'Technologies', field: 'technologies', placeholder: 'React, Node.js, Prisma, PostgreSQL' },
                     ].map(({ label, field, placeholder }) => (
                       <div key={field}>
-                        <label className="text-[9px] text-slate-500 font-semibold uppercase">{label}</label>
+                        <label className="text-[9px] text-muted-foreground font-semibold uppercase">{label}</label>
                         <input
                           value={(proj as any)[field]}
                           onChange={(e) => updateProject(idx, field, e.target.value)}
                           placeholder={placeholder}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-md px-2.5 py-1.5 text-xs text-slate-200 mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary"
+                          className="w-full bg-muted border border-border rounded-md px-2.5 py-1.5 text-xs text-foreground mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white"
                         />
                       </div>
                     ))}
                     <div>
-                      <label className="text-[9px] text-slate-500 font-semibold uppercase">Description</label>
+                      <label className="text-[9px] text-muted-foreground font-semibold uppercase">Description</label>
                       <textarea
                         rows={2}
                         value={proj.description}
                         onChange={(e) => updateProject(idx, 'description', e.target.value)}
                         placeholder="Built a full-stack AI resume platform serving 500+ users..."
-                        className="w-full bg-slate-950 border border-slate-800 rounded-md px-2.5 py-1.5 text-xs text-slate-200 mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+                        className="w-full bg-muted border border-border rounded-md px-2.5 py-1.5 text-xs text-foreground mt-0.5 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white resize-none"
                       />
                     </div>
                   </div>
@@ -804,13 +804,13 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
         </div>
 
         {/* CENTER — Full A4 Preview */}
-        <div className="flex-1 bg-slate-950 flex flex-col overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-2 bg-[#0d1322] border-b border-slate-800 shrink-0">
-            <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+        <div className="flex-1 bg-[#f5f3f0] flex flex-col overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-2 bg-[#fbfaf8] border-b border-border shrink-0">
+            <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
               <Icons.FileText size={12} className="text-primary" />
               Live Preview — {currentTemplate.name}
             </span>
-            <div className="flex items-center gap-1 text-[10px] text-slate-500">
+            <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
               <span>A4 Page</span>
               <span className="mx-1.5">·</span>
               <span>ATS Safe</span>
@@ -830,7 +830,7 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
                 marginBottom: `calc((${previewZoom} - 1) * 297mm)`,
               }}
             >
-              <div id="resume-preview">
+              <div id="resume-preview" className="shadow-lg border border-slate-200">
                 <ResumePreview data={resumeData} templateId={templateId} />
               </div>
             </div>
@@ -838,55 +838,55 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
         </div>
 
         {/* RIGHT — AI Coach */}
-        <div className={`transition-all duration-300 ease-in-out border-l border-slate-800 bg-[#0d1322] flex flex-col overflow-hidden ${
+        <div className={`transition-all duration-300 ease-in-out border-l border-border bg-card flex flex-col overflow-hidden ${
           isRightPanelOpen ? 'w-72 opacity-100 shrink-0' : 'w-0 opacity-0 pointer-events-none border-l-0'
         }`}>
-          <div className="px-4 py-3 border-b border-slate-800 shrink-0">
+          <div className="px-4 py-3 border-b border-border shrink-0 bg-[#fbfaf8]">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
                 <Icons.Sparkles className="text-primary" size={14} />
               </div>
               <div>
-                <div className="text-xs font-bold text-slate-100">AI Resume Coach</div>
-                <div className="text-[9px] text-emerald-400">● Online · StepFun AI</div>
+                <div className="text-xs font-bold text-foreground">AI Resume Coach</div>
+                <div className="text-[9px] text-emerald-600 font-semibold">● Online · StepFun AI</div>
               </div>
             </div>
           </div>
 
-          <div ref={chatRef} className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div ref={chatRef} className="flex-1 overflow-y-auto p-3 space-y-3 bg-card">
             {messages.map((msg, i) => (
               <div key={i} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
                 {msg.role === 'assistant' && (
-                  <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mb-1">
-                    <Icons.Sparkles size={10} className="text-primary" />
+                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mb-1 text-primary">
+                    <Icons.Sparkles size={10} />
                   </div>
                 )}
                 <div
                   className={`max-w-[92%] rounded-xl px-3 py-2.5 text-[11px] leading-relaxed ${
                     msg.role === 'user'
-                      ? 'bg-primary text-white rounded-br-sm'
-                      : 'bg-slate-800/80 border border-slate-700/50 text-slate-300 rounded-bl-sm'
+                      ? 'bg-primary text-white rounded-br-sm shadow-sm shadow-primary/10'
+                      : 'bg-muted border border-border text-foreground rounded-bl-sm'
                   }`}
                 >
                   {msg.content}
                 </div>
 
                 {msg.suggestion && (
-                  <div className="mt-2 w-full max-w-[92%] bg-indigo-950/50 border border-indigo-800/50 rounded-xl p-3 space-y-2">
+                  <div className="mt-2 w-full max-w-[92%] bg-[#f5f3ff] border border-indigo-200 rounded-xl p-3 space-y-2">
                     <div className="flex items-center gap-1.5">
-                      <div className="w-4 h-4 rounded bg-indigo-600/30 flex items-center justify-center">
-                        <Icons.Sparkles size={9} className="text-indigo-400" />
+                      <div className="w-4 h-4 rounded bg-[#7c5dfa]/10 flex items-center justify-center">
+                        <Icons.Sparkles size={9} className="text-[#7c5dfa]" />
                       </div>
-                      <span className="text-[10px] font-bold text-indigo-300">AI Suggestion</span>
+                      <span className="text-[10px] font-bold text-primary">AI Suggestion</span>
                     </div>
-                    <p className="text-[10px] text-slate-400 leading-snug">
+                    <p className="text-[10px] text-slate-600 leading-snug">
                       {msg.suggestion.type === 'summary'
                         ? 'Rewrite professional summary with ATS keywords'
                         : `Add ${msg.suggestion.value?.length} skills to your profile`}
                     </p>
                     <button
                       onClick={() => applySuggestion(msg.suggestion)}
-                      className="w-full py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg text-[10px] transition flex items-center justify-center gap-1"
+                      className="w-full py-1.5 bg-[#7c5dfa] hover:bg-[#6d4ae5] text-white font-semibold rounded-lg text-[10px] shadow-sm transition flex items-center justify-center gap-1"
                     >
                       <Icons.ArrowRight size={10} /> Apply to Resume
                     </button>
@@ -897,10 +897,10 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
 
             {isAiResponding && messages[messages.length - 1]?.role !== 'assistant' && (
               <div className="flex items-start gap-2">
-                <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                  <Icons.Sparkles size={10} className="text-primary" />
+                <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <Icons.Sparkles size={10} />
                 </div>
-                <div className="bg-slate-800/80 border border-slate-700/50 rounded-xl rounded-bl-sm px-3 py-2.5">
+                <div className="bg-muted border border-border rounded-xl rounded-bl-sm px-3 py-2.5">
                   <div className="flex gap-1">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                     <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -911,19 +911,19 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
             )}
           </div>
 
-          <div className="p-3 border-t border-slate-800 shrink-0 bg-[#0b0f19]">
+          <div className="p-3 border-t border-border shrink-0 bg-[#fbfaf8]">
             <div className="flex gap-2">
               <input
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                 placeholder="Ask coach anything..."
-                className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-[11px] text-slate-300 focus:outline-none focus:ring-1 focus:ring-primary placeholder-slate-600"
+                className="flex-1 bg-muted border border-border rounded-xl px-3 py-2 text-[11px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white placeholder-slate-400"
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!inputMessage.trim() || isAiResponding}
-                className="w-8 h-8 rounded-xl bg-primary hover:bg-primary/90 disabled:opacity-40 text-white flex items-center justify-center transition shrink-0"
+                className="w-8 h-8 rounded-xl bg-primary hover:bg-[#6d4ae5] disabled:opacity-40 text-white flex items-center justify-center transition shrink-0"
               >
                 <Icons.Send size={13} />
               </button>
@@ -933,7 +933,7 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
                 <button
                   key={prompt}
                   onClick={() => { setInputMessage(prompt); }}
-                  className="text-[9px] px-2 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-400 hover:text-slate-200 hover:border-primary/40 transition"
+                  className="text-[9px] px-2 py-1 rounded-full bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/45 transition"
                 >
                   {prompt}
                 </button>
