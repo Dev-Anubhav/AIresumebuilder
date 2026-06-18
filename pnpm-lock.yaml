@@ -96,9 +96,6 @@ importers:
 
   apps/web:
     dependencies:
-      '@ai-document-platform/types':
-        specifier: workspace:*
-        version: link:../../packages/types
       '@tanstack/react-query':
         specifier: ^5.0.0
         version: 5.101.0(react@19.0.0)
