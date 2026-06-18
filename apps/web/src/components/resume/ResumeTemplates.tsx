@@ -49,10 +49,11 @@ interface ResumePreviewProps {
 export function ResumePreview({ data, templateId }: ResumePreviewProps) {
   const { personalInfo, experience = [], education = [], skills = [], projects = [], custom = {} } = data;
 
-  const renderBullets = (text: string) => {
+  const renderBullets = (text: any) => {
     if (!text) return null;
-    return text.split('\n').map((bullet, idx) => {
-      const trimmed = bullet.trim().replace(/^-\s*/, '');
+    const textStr = Array.isArray(text) ? text.join('\n') : String(text);
+    return textStr.split('\n').map((bullet, idx) => {
+      const trimmed = bullet.trim().replace(/^[-–—•]\s*/, '');
       if (!trimmed) return null;
       return (
         <li key={idx} className="text-slate-700 leading-relaxed text-xs list-disc ml-4 mb-1">

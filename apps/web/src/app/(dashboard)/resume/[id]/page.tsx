@@ -396,15 +396,30 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
   const applySuggestion = (suggestion: any) => {
     let newData = { ...resumeData };
     if (suggestion.type === 'summary') {
-      newData.personalInfo = { ...newData.personalInfo, summary: suggestion.value };
+      newData.personalInfo = {
+        ...newData.personalInfo,
+        summary: Array.isArray(suggestion.value) ? suggestion.value.join('\n') : String(suggestion.value || ''),
+      };
     } else if (suggestion.type === 'skills') {
-      newData.skills = [...new Set([...newData.skills, ...suggestion.value])];
+      const skillsArray = Array.isArray(suggestion.value) ? suggestion.value : [String(suggestion.value || '')];
+      newData.skills = [...new Set([...newData.skills, ...skillsArray.map((s: any) => String(s || '').trim())])];
     } else if (suggestion.type === 'experience') {
       const compName = (suggestion.company || '').toLowerCase().trim();
+      let textValue = '';
+      if (Array.isArray(suggestion.value)) {
+        textValue = suggestion.value
+          .map((val: any) => {
+            const v = String(val || '').trim();
+            return v.startsWith('–') || v.startsWith('-') ? v : `– ${v}`;
+          })
+          .join('\n');
+      } else {
+        textValue = String(suggestion.value || '');
+      }
       newData.experience = newData.experience.map((exp) => {
         const match = exp.company.toLowerCase().includes(compName) || compName.includes(exp.company.toLowerCase());
         if (match) {
-          return { ...exp, description: suggestion.value };
+          return { ...exp, description: textValue };
         }
         return exp;
       });
