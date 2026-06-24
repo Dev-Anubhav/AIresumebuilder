@@ -12,6 +12,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const hideSidebar = isResumeBuilder || isSharedView;
 
   const [user, setUser] = useState<{ name: string; avatarColor: string } | null>(null);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
     if (hideSidebar) return;
@@ -26,8 +27,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }, [hideSidebar]);
 
   const handleLogout = async () => {
+    setIsLoggingOut(true);
     try {
-      await fetch('/api/auth/logout', { method: 'POST' });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 second timeout
+      await fetch('/api/auth/logout', { 
+        method: 'POST',
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
     } catch (err) {
       console.error('Logout error:', err);
     } finally {
@@ -116,10 +124,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             )}
             <button
               onClick={handleLogout}
-              className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-border bg-muted/30 hover:bg-rose-50 text-muted-foreground hover:text-rose-600 text-[11px] font-bold transition cursor-pointer"
+              disabled={isLoggingOut}
+              className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-border bg-muted/30 hover:bg-rose-50 text-muted-foreground hover:text-rose-600 text-[11px] font-bold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Icons.LogOut size={13} />
-              Log Out
+              {isLoggingOut ? (
+                <>
+                  <Icons.Loader2 size={13} className="animate-spin" />
+                  Logging out...
+                </>
+              ) : (
+                <>
+                  <Icons.LogOut size={13} />
+                  Log Out
+                </>
+              )}
             </button>
           </div>
         </aside>
