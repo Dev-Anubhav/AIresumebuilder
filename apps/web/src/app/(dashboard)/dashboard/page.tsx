@@ -38,7 +38,15 @@ export default function DashboardPage() {
   // Fetch user profile info
   useEffect(() => {
     fetch('/api/auth/me')
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        if (r.status === 401 || r.status === 403) {
+          fetch('/api/auth/logout', { method: 'POST' }).finally(() => {
+            window.location.href = '/login';
+          });
+          return null;
+        }
+        return r.ok ? r.json() : null;
+      })
       .then((data) => {
         if (data?.user) {
           setUserName(data.user.name || data.user.email.split('@')[0] || 'User');

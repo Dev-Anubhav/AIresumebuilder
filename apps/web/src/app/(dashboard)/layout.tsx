@@ -17,7 +17,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   useEffect(() => {
     if (hideSidebar) return;
     fetch('/api/auth/me')
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        if (r.status === 401 || r.status === 403) {
+          fetch('/api/auth/logout', { method: 'POST' }).finally(() => {
+            window.location.href = '/login';
+          });
+          return null;
+        }
+        return r.ok ? r.json() : null;
+      })
       .then((data) => {
         if (data?.user) {
           setUser({ name: data.user.name || data.user.email, avatarColor: data.user.avatarColor || '#6366f1' });
@@ -29,13 +37,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 second timeout
-      await fetch('/api/auth/logout', { 
-        method: 'POST',
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
+      await fetch('/api/auth/logout', { method: 'POST' });
     } catch (err) {
       console.error('Logout error:', err);
     } finally {
