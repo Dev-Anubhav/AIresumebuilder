@@ -276,6 +276,28 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
   const previewRef = useRef<HTMLDivElement>(null);
   const [isLeftPanelOpen, setIsLeftPanelOpen] = useState(true);
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(true);
+  const [isExporting, setIsExporting] = useState(false);
+
+  const handleExport = async () => {
+    const element = document.getElementById('resume-preview');
+    if (!element) return;
+    setIsExporting(true);
+    try {
+      const html2pdf = (await import('html2pdf.js')).default;
+      const opt = {
+        margin:       0,
+        filename:     `${title.replace(/\s+/g, '_') || 'resume'}.pdf`,
+        image:        { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false },
+        jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
+      };
+      await html2pdf().set(opt).from(element).save();
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   const [title, setTitle] = useState('My Resume');
   const [templateId, setTemplateId] = useState('minimalist');
@@ -556,10 +578,20 @@ export default function ResumeBuilderPage({ params }: { params: Promise<{ id: st
           </div>
 
           <button
-            onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-primary/95 text-white font-semibold text-xs transition shadow-md shadow-primary/10"
+            onClick={handleExport}
+            disabled={isExporting}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-primary/95 disabled:opacity-75 text-white font-semibold text-xs transition shadow-md shadow-primary/10"
           >
-            <Icons.Download size={13} /> Export PDF
+            {isExporting ? (
+              <>
+                <Icons.Loader2 className="animate-spin" size={13} />
+                Exporting...
+              </>
+            ) : (
+              <>
+                <Icons.Download size={13} /> Export PDF
+              </>
+            )}
           </button>
         </div>
       </div>
