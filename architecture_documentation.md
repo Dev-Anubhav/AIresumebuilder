@@ -89,7 +89,7 @@ By utilizing the standard `openai` npm package, we simply override the `baseURL`
 ```typescript
 import OpenAI from 'openai';
 
-const apiKey = process.env.NVIDIA_API_KEY || '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';
+const apiKey = process.env.NVIDIA_API_KEY || '';
 
 export const openai = new OpenAI({
   apiKey,
